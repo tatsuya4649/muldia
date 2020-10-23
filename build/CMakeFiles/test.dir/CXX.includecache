@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/core/shape.h
+name.h
+-
+vector
+-
+type_traits
+-
+initializer_list
+-
+
+../include/name.h
+string
+-
+
+/home/tatsuya/Desktop/muldia/src/shape.cpp
+core/shape.h
+-
+
