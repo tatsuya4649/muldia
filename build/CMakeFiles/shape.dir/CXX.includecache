@@ -22,10 +22,6 @@ iostream
 string
 -
 
-/home/tatsuya/Desktop/muldia/src/shape.cpp
-core/shape.h
--
-
 /home/tatsuya/Desktop/muldia/test/test.cpp
 core/shape.h
 -
