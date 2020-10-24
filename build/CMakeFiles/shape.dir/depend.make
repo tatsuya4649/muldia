@@ -8,7 +8,7 @@ CMakeFiles/shape.dir/src/shape.cpp.o: ../include/core/shape.h
 CMakeFiles/shape.dir/src/shape.cpp.o: ../include/name.h
 CMakeFiles/shape.dir/src/shape.cpp.o: ../src/shape.cpp
 
-CMakeFiles/shape.dir/test/test.cpp.o: ../include/core/shape.h
 CMakeFiles/shape.dir/test/test.cpp.o: ../include/name.h
+CMakeFiles/shape.dir/test/test.cpp.o: ../include/tensor/_tensor.h
 CMakeFiles/shape.dir/test/test.cpp.o: ../test/test.cpp
 

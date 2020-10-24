@@ -6,24 +6,18 @@
 
 #IncludeRegexTransform: 
 
-../include/core/shape.h
-name.h
--
-vector
--
-type_traits
--
-initializer_list
--
-iostream
--
-
 ../include/name.h
 string
 -
 
+../include/tensor/_tensor.h
+name.h
+-
+memory
+-
+
 /home/tatsuya/Desktop/muldia/test/test.cpp
-core/shape.h
+tensor/_tensor.h
 -
 iostream
 -

@@ -9,6 +9,6 @@ CMakeFiles/shape.dir/src/shape.cpp.o
  ../include/name.h
  /home/tatsuya/Desktop/muldia/src/shape.cpp
 CMakeFiles/shape.dir/test/test.cpp.o
- ../include/core/shape.h
  ../include/name.h
+ ../include/tensor/_tensor.h
  /home/tatsuya/Desktop/muldia/test/test.cpp
