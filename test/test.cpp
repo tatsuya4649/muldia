@@ -4,5 +4,5 @@
 int main()
 {
 	__md::shape a{5};
-	std::cout << "hello" << std::endl;
+	std::cout << a << std::endl;
 }

@@ -6,11 +6,29 @@
 
 #IncludeRegexTransform: 
 
+../include/core/shape.h
+name.h
+-
+vector
+-
+type_traits
+-
+initializer_list
+-
+iostream
+-
+
 ../include/name.h
 string
 -
 
-/home/tatsuya/Desktop/muldia/src/name.cpp
-name.h
+/home/tatsuya/Desktop/muldia/src/shape.cpp
+core/shape.h
+-
+
+/home/tatsuya/Desktop/muldia/test/test.cpp
+core/shape.h
+-
+iostream
 -
 

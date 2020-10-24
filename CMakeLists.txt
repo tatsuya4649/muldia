@@ -4,5 +4,5 @@ project( muldia )
 
 include_directories( include src test )
 
-add_executable( shape ./test/test.cpp ./src/shape.cpp ./src/name.cpp )
+add_executable( shape ./src/name.cpp ./src/shape.cpp ./test/test.cpp)
 

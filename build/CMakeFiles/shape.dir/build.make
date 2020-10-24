@@ -57,18 +57,18 @@ include CMakeFiles/shape.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/shape.dir/flags.make
 
-CMakeFiles/shape.dir/test/test.cpp.o: CMakeFiles/shape.dir/flags.make
-CMakeFiles/shape.dir/test/test.cpp.o: ../test/test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/shape.dir/test/test.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/shape.dir/test/test.cpp.o -c /home/tatsuya/Desktop/muldia/test/test.cpp
+CMakeFiles/shape.dir/src/name.cpp.o: CMakeFiles/shape.dir/flags.make
+CMakeFiles/shape.dir/src/name.cpp.o: ../src/name.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/shape.dir/src/name.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/shape.dir/src/name.cpp.o -c /home/tatsuya/Desktop/muldia/src/name.cpp
 
-CMakeFiles/shape.dir/test/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/shape.dir/test/test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/test/test.cpp > CMakeFiles/shape.dir/test/test.cpp.i
+CMakeFiles/shape.dir/src/name.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/shape.dir/src/name.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/src/name.cpp > CMakeFiles/shape.dir/src/name.cpp.i
 
-CMakeFiles/shape.dir/test/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shape.dir/test/test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/test/test.cpp -o CMakeFiles/shape.dir/test/test.cpp.s
+CMakeFiles/shape.dir/src/name.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shape.dir/src/name.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/src/name.cpp -o CMakeFiles/shape.dir/src/name.cpp.s
 
 CMakeFiles/shape.dir/src/shape.cpp.o: CMakeFiles/shape.dir/flags.make
 CMakeFiles/shape.dir/src/shape.cpp.o: ../src/shape.cpp
@@ -83,31 +83,31 @@ CMakeFiles/shape.dir/src/shape.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shape.dir/src/shape.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/src/shape.cpp -o CMakeFiles/shape.dir/src/shape.cpp.s
 
-CMakeFiles/shape.dir/src/name.cpp.o: CMakeFiles/shape.dir/flags.make
-CMakeFiles/shape.dir/src/name.cpp.o: ../src/name.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/shape.dir/src/name.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/shape.dir/src/name.cpp.o -c /home/tatsuya/Desktop/muldia/src/name.cpp
+CMakeFiles/shape.dir/test/test.cpp.o: CMakeFiles/shape.dir/flags.make
+CMakeFiles/shape.dir/test/test.cpp.o: ../test/test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/shape.dir/test/test.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/shape.dir/test/test.cpp.o -c /home/tatsuya/Desktop/muldia/test/test.cpp
 
-CMakeFiles/shape.dir/src/name.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/shape.dir/src/name.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/src/name.cpp > CMakeFiles/shape.dir/src/name.cpp.i
+CMakeFiles/shape.dir/test/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/shape.dir/test/test.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/test/test.cpp > CMakeFiles/shape.dir/test/test.cpp.i
 
-CMakeFiles/shape.dir/src/name.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shape.dir/src/name.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/src/name.cpp -o CMakeFiles/shape.dir/src/name.cpp.s
+CMakeFiles/shape.dir/test/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shape.dir/test/test.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/test/test.cpp -o CMakeFiles/shape.dir/test/test.cpp.s
 
 # Object files for target shape
 shape_OBJECTS = \
-"CMakeFiles/shape.dir/test/test.cpp.o" \
+"CMakeFiles/shape.dir/src/name.cpp.o" \
 "CMakeFiles/shape.dir/src/shape.cpp.o" \
-"CMakeFiles/shape.dir/src/name.cpp.o"
+"CMakeFiles/shape.dir/test/test.cpp.o"
 
 # External object files for target shape
 shape_EXTERNAL_OBJECTS =
 
-shape: CMakeFiles/shape.dir/test/test.cpp.o
-shape: CMakeFiles/shape.dir/src/shape.cpp.o
 shape: CMakeFiles/shape.dir/src/name.cpp.o
+shape: CMakeFiles/shape.dir/src/shape.cpp.o
+shape: CMakeFiles/shape.dir/test/test.cpp.o
 shape: CMakeFiles/shape.dir/build.make
 shape: CMakeFiles/shape.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tatsuya/Desktop/muldia/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable shape"
