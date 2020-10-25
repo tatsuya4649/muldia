@@ -1,12 +1,12 @@
 // <core/types.h> define int type with different number of bits.
 //
-#ifndef _CORE_TYPES_H
-#define _CORE_TYPES_H
+#ifndef CORE_TYPES_H
+#define CORE_TYPES_H
 
 #include <name.h>
 #include <cstdint>
 
-namespace __md{
+namespace _md{
 	// define various int types
 	using int64  = std::int64_t;
 	using int32  = std::int32_t;
@@ -33,6 +33,6 @@ namespace __md{
 		// LITTLE => 00001000 00000100 00000010 00000001
 		LITTLE
 	};
-} // namespace __md
+} // namespace _md
 
-#endif // _CORE_TYPES_H
+#endif // CORE_TYPES_H

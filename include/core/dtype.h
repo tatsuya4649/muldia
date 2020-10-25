@@ -3,8 +3,8 @@
 //
 //
 //
-#ifndef _CORE_DTYPE_H
-#define _CORE_DTYPE_H
+#ifndef CORE_DTYPE_H
+#define CORE_DTYPE_H
 
 #include <name.h>
 #include <typeinfo>
@@ -12,21 +12,21 @@
 #include <iostream>
 #include <type_traits>
 
-namespace __md{
+namespace _md{
 	template<typename T>
 	class dtype{
 			using type = T;
 		public:
 			constexpr std::string operator()() const { return std::string{typeid(T).name()}; } 
 			template<typename D>
-			bool operator==(const dtype<D>& __d){ return std::is_same<type,D>::value; }
+			bool operator==(const dtype<D>& d_){ return std::is_same<type,D>::value; }
 	};
 
 	template<typename T>
-	std::ostream& operator<<(std::ostream& os,const dtype<T>& __d){
-		return os << __d();
+	std::ostream& operator<<(std::ostream& os,const dtype<T>& d_){
+		return os << d_();
 	}	
 	
-} // __md
+} // _md
 
-#endif // _CORE_DTYPE_H
+#endif // CORE_DTYPE_H

@@ -9,15 +9,16 @@
 #include <type_traits>
 #include <initializer_list>
 #include <iostream>
+#include <numeric>
 
-namespace __md{
-	using __shape_t = unsigned int;
-	using __shape_size_t = unsigned int;
-	using __shape = std::vector<__shape_t>;
-	using __shape_list = std::initializer_list<__shape_t>;
+namespace _md{
+	using shape_t = unsigned int;
+	using shape_size_t = unsigned int;
+	using shp_v = std::vector<shape_t>;
+	using shp_l = std::initializer_list<shape_t>;
 	class shape{
 		private:
-			bool chck_shape_size(__shape_t i){
+			bool _chck_shape_size(shape_t i){
 				if ( i >= _shape_size or i < 0){
 					return false;
 				}else{
@@ -36,68 +37,69 @@ namespace __md{
 			//
 			//
 			shape() = delete;
-			shape(__shape_t _t,__shape_size_t _ts=1) : _shape_size{_ts}{
-				for (;_ts!=0;--_ts){
-					_shape.push_back(_t);
+			shape(shape_t t_,shape_size_t ts_=1) : _shape_size{ts_}{
+				for (;ts_!=0;--ts_){
+					_shape.push_back(t_);
 				}
 			}
-			shape(__shape _vt) : _shape{_vt},_shape_size{static_cast<__shape_size_t>(_vt.size())}{}
-			shape(__shape_t* _pt,__shape_size_t _ts=1) : _shape_size{_ts}{
-				for (__shape_size_t i=0;i!=_ts;++i){
-					_shape.push_back(*(_pt+i));
+			shape(shp_v vt_) : _shape{vt_},_shape_size{static_cast<shape_size_t>(vt_.size())}{}
+			shape(shape_t* pt_,shape_size_t ts_=1) : _shape_size{ts_}{
+				for (shape_size_t i=0;i!=ts_;++i){
+					_shape.push_back(*(pt_+i));
 				}
 			}
-			shape(__shape_list __il) : _shape_size{static_cast<__shape_size_t>(__il.size())}{
-				for (__shape_size_t i=0;i!=_shape_size;++i){
-					_shape.push_back(*(__il.begin() + i));
+			shape(shp_l il_) : _shape_size{static_cast<shape_size_t>(il_.size())}{
+				for (shape_size_t i=0;i!=_shape_size;++i){
+					_shape.push_back(*(il_.begin() + i));
 				}
 			}
-			shape(const shape& __s) : _shape{__s._shape},_shape_size{__s._shape_size}{}
-			shape(shape&& __s) : _shape{__s._shape},_shape_size{__s._shape_size}{
-				__s._shape = __shape{};
-				__s._shape_size = 0;
+			shape(const shape& s_) : _shape{s_._shape},_shape_size{s_._shape_size}{}
+			shape(shape&& s_) : _shape{s_._shape},_shape_size{s_._shape_size}{
+				s_._shape = shp_v{};
+				s_._shape_size = 0;
 			}
-			shape& operator=(const shape& __s){
-				this->_shape = __s._shape;
-				this->_shape_size = __s._shape_size;
+			shape& operator=(const shape& s_){
+				this->_shape = s_._shape;
+				this->_shape_size = s_._shape_size;
 				return *this;
 			}
-			shape& operator=(shape&& __s){
-				if (this!=&__s){
-					this->_shape = __s._shape;
-					this->_shape_size = __s._shape_size;
+			shape& operator=(shape&& s_){
+				if (this!=&s_){
+					this->_shape = s_._shape;
+					this->_shape_size = s_._shape_size;
 				}
 				return *this;
 			}
-			__shape_t operator[](__shape_t i){ 
-				if (chck_shape_size(i)){
+			shape_t operator[](shape_t i){ 
+				if (_chck_shape_size(i)){
 					// error handle (out_of_index)
 				}
 				return _shape[i];
 			}
-			__shape_t operator()(__shape_t i){
-				if (chck_shape_size(i)){
+			shape_t operator()(shape_t i){
+				if (_chck_shape_size(i)){
 					// error handle (out_of_index)
 				}
 				return _shape[i];
 			}
-			__shape operator()() const{ return _shape; }
-			__shape_size_t ndim() { return _shape_size; }
+			shp_v operator()() const{ return _shape; }
+			shape_size_t ndim() { return _shape_size; }
 			std::string str(){
 				std::string res{};
 				res += "(";
-				for (const auto& __sp : _shape){
-					res += std::to_string(__sp);
-					if (&__sp != &(_shape.back()))
+				for (const auto& sp_ : _shape){
+					res += std::to_string(sp_);
+					if (&sp_ != &(_shape.back()))
 						res += ",";
 				}
 				res += ")";
 				return res;
 			}
+			shape_size_t size() {return std::accumulate(_shape.begin(),_shape.end(),1,[](int init,int v){ return init * v;});}
 
 		private:
-			__shape _shape;
-			__shape_size_t   _shape_size;
+			shp_v 	       _shape;
+			shape_size_t   _shape_size;
 	
 	}; // class shape
 
@@ -105,6 +107,6 @@ namespace __md{
 	bool operator==(const shape&,const shape&);
 	bool operator!=(const shape&,const shape&);
 
-} // namespace __md
+} // namespace _md
 
 #endif // CORE_SHAPE_H
