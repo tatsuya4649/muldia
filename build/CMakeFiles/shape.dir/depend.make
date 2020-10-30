@@ -16,5 +16,6 @@ CMakeFiles/shape.dir/test/test.cpp.o: ../include/tensor/_ctn.h
 CMakeFiles/shape.dir/test/test.cpp.o: ../include/tensor/_inest.h
 CMakeFiles/shape.dir/test/test.cpp.o: ../include/tensor/_inst.h
 CMakeFiles/shape.dir/test/test.cpp.o: ../include/tensor/_tensor.h
+CMakeFiles/shape.dir/test/test.cpp.o: ../include/tensor/name.h
 CMakeFiles/shape.dir/test/test.cpp.o: ../test/test.cpp
 

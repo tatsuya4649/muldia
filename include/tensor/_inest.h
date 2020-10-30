@@ -5,14 +5,16 @@
 #include <name.h>
 #include <initializer_list>
 #include <cstddef>
+#include <vector>
 
 namespace _md{
 	using dim_t = unsigned int;
-	namespace TEN{
+	using dim_length = unsigned int;
+	namespace _ten{
 		template<typename T,dim_t I>
 		struct nest_init_list{
 			using nested_type = typename nest_init_list<T,I-1>::type;
-			using type = typename std::initializer_list<nested_type>;
+			using type = typename std::vector<nested_type>;
 		};
 		template<typename T>
 		struct nest_init_list<T,0>{
@@ -20,5 +22,5 @@ namespace _md{
 		};
 		template<typename T,dim_t I>
 		using nest_init_t = typename nest_init_list<T,I>::type;
-	} // namespace TEN
+	} // namespace _ten
 } // namespace _md

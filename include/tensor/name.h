@@ -8,5 +8,6 @@
 #include <string>
 
 #define TEN	_tensor
+#define _ten	_tensor
 
 #endif // TENSOR_NAME_H

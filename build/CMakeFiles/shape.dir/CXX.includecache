@@ -51,6 +51,8 @@ initializer_list
 -
 cstddef
 -
+vector
+-
 
 ../include/tensor/_inst.h
 name.h
@@ -62,6 +64,8 @@ iostream
 
 ../include/tensor/_tensor.h
 name.h
+-
+tensor/name.h
 -
 memory
 -
@@ -86,6 +90,14 @@ tensor/_inst.h
 vector
 -
 cstddef
+-
+utility
+-
+
+../include/tensor/name.h
+name.h
+-
+string
 -
 
 /home/tatsuya/Desktop/muldia/test/test.cpp

@@ -16,7 +16,7 @@ namespace _md{
 	using shape_size_t = unsigned int;
 	using shp_v = std::vector<shape_t>;
 	using shp_l = std::initializer_list<shape_t>;
-	class shape{
+	class _shape{
 		private:
 			bool _chck_shape_size(shape_t i){
 				if ( i >= _shape_size or i < 0){
@@ -29,43 +29,42 @@ namespace _md{
 			// 
 			// how to initialize muldia::shape<T> class
 			// =========================================
-			// muldia::shape([a,b,c]) => shape (a,b,c)
-			// muldia::shape(std::vector<__shape_t>(a,b,c)) => shape (a,b,c)
-			// muldia::shape((a,b,c)) => shape (a,b,c)
-			// muldia::shape(__shape_t a)   => shape (a)
-			// muldia::shape(std::initialize_list<__shape_t>({a,b,c})) => shape {a,b,c}
+			// muldia::_shape([a,b,c]) => shape (a,b,c)
+			// muldia::_shape(std::vector<__shape_t>(a,b,c)) => shape (a,b,c)
+			// muldia::_shape((a,b,c)) => shape (a,b,c)
+			// muldia::_shape(__shape_t a)   => shape (a)
+			// muldia::_shape(std::initialize_list<__shape_t>({a,b,c})) => shape {a,b,c}
 			//
-			//
-			shape() = delete;
-			shape(shape_t t_,shape_size_t ts_=1) : _shape_size{ts_}{
+			_shape() = default;
+			_shape(shape_t t_,shape_size_t ts_=1) : _shape_size{ts_}{
 				for (;ts_!=0;--ts_){
-					_shape.push_back(t_);
+					_shp.push_back(t_);
 				}
 			}
-			shape(shp_v vt_) : _shape{vt_},_shape_size{static_cast<shape_size_t>(vt_.size())}{}
-			shape(shape_t* pt_,shape_size_t ts_=1) : _shape_size{ts_}{
+			_shape(shp_v vt_) : _shp{vt_},_shape_size{static_cast<shape_size_t>(vt_.size())}{}
+			_shape(shape_t* pt_,shape_size_t ts_=1) : _shape_size{ts_}{
 				for (shape_size_t i=0;i!=ts_;++i){
-					_shape.push_back(*(pt_+i));
+					_shp.push_back(*(pt_+i));
 				}
 			}
-			shape(shp_l il_) : _shape_size{static_cast<shape_size_t>(il_.size())}{
+			_shape(shp_l il_) : _shape_size{static_cast<shape_size_t>(il_.size())}{
 				for (shape_size_t i=0;i!=_shape_size;++i){
-					_shape.push_back(*(il_.begin() + i));
+					_shp.push_back(*(il_.begin() + i));
 				}
 			}
-			shape(const shape& s_) : _shape{s_._shape},_shape_size{s_._shape_size}{}
-			shape(shape&& s_) : _shape{s_._shape},_shape_size{s_._shape_size}{
-				s_._shape = shp_v{};
+			_shape(const _shape& s_) : _shp{s_._shp},_shape_size{s_._shape_size}{}
+			_shape(_shape&& s_) : _shp{s_._shp},_shape_size{s_._shape_size}{
+				s_._shp = shp_v{};
 				s_._shape_size = 0;
 			}
-			shape& operator=(const shape& s_){
-				this->_shape = s_._shape;
+			_shape& operator=(const _shape& s_){
+				this->_shp = s_._shp;
 				this->_shape_size = s_._shape_size;
 				return *this;
 			}
-			shape& operator=(shape&& s_){
+			_shape& operator=(_shape&& s_){
 				if (this!=&s_){
-					this->_shape = s_._shape;
+					this->_shp = s_._shp;
 					this->_shape_size = s_._shape_size;
 				}
 				return *this;
@@ -74,38 +73,38 @@ namespace _md{
 				if (_chck_shape_size(i)){
 					// error handle (out_of_index)
 				}
-				return _shape[i];
+				return _shp[i];
 			}
 			shape_t operator()(shape_t i){
 				if (_chck_shape_size(i)){
 					// error handle (out_of_index)
 				}
-				return _shape[i];
+				return _shp[i];
 			}
-			shp_v operator()() const{ return _shape; }
+			shp_v operator()() const{ return _shp; }
 			shape_size_t ndim() { return _shape_size; }
 			std::string str(){
 				std::string res{};
 				res += "(";
-				for (const auto& sp_ : _shape){
+				for (const auto& sp_ : _shp){
 					res += std::to_string(sp_);
-					if (&sp_ != &(_shape.back()))
+					if (&sp_ != &(_shp.back()))
 						res += ",";
 				}
 				res += ")";
 				return res;
 			}
-			shape_size_t size() {return std::accumulate(_shape.begin(),_shape.end(),1,[](int init,int v){ return init * v;});}
+			shape_size_t size() {return std::accumulate(_shp.begin(),_shp.end(),1,[](int init,int v){ return init * v;});}
 
 		private:
-			shp_v 	       _shape;
+			shp_v 	       _shp;
 			shape_size_t   _shape_size;
 	
-	}; // class shape
+	}; // class _shape
 
-	std::ostream& operator<<(std::ostream&,shape);
-	bool operator==(const shape&,const shape&);
-	bool operator!=(const shape&,const shape&);
+	std::ostream& operator<<(std::ostream&,_shape);
+	bool operator==(const _shape&,const _shape&);
+	bool operator!=(const _shape&,const _shape&);
 
 } // namespace _md
 

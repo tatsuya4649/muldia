@@ -14,16 +14,21 @@
 
 namespace _md{
 	template<typename T>
-	class dtype{
+	class _dtype{
 			using type = T;
+			using type_name = std::string;
 		public:
+			_dtype() : _name{ type_name{typeid(T).name()} } {}
 			constexpr std::string operator()() const { return std::string{typeid(T).name()}; } 
 			template<typename D>
-			bool operator==(const dtype<D>& d_){ return std::is_same<type,D>::value; }
+			bool operator==(const _dtype<D>& d_){ return std::is_same<type,D>::value; }
+			type_name name() const noexcept { return _name; }
+		private:
+			type_name _name;
 	};
 
 	template<typename T>
-	std::ostream& operator<<(std::ostream& os,const dtype<T>& d_){
+	std::ostream& operator<<(std::ostream& os,const _dtype<T>& d_){
 		return os << d_();
 	}	
 	

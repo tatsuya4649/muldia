@@ -17,4 +17,5 @@ CMakeFiles/shape.dir/test/test.cpp.o
  ../include/tensor/_inest.h
  ../include/tensor/_inst.h
  ../include/tensor/_tensor.h
+ ../include/tensor/name.h
  /home/tatsuya/Desktop/muldia/test/test.cpp

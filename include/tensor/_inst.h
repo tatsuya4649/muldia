@@ -7,7 +7,7 @@
 #include <iostream>
 
 namespace _md{
-	namespace TEN{
+	namespace _ten{
 		template<typename T,typename... Tail>
 		struct inst{
 			inst(){
@@ -15,7 +15,7 @@ namespace _md{
 				std::cout << param_size << std::endl;
 			}
 		};
-	} // namespace TEN
+	} // namespace _ten
 } // namespace _md
 
 #endif // TENSOR_INST_H
