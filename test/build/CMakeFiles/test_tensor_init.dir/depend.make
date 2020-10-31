@@ -22,6 +22,7 @@ CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_sh
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tein.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tenit.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tensor.h
+CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tenus.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/name.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../test_tensor_init.cpp
 

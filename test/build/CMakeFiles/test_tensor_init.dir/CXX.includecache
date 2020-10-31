@@ -165,6 +165,14 @@ tensor/_tein.h
 -
 tensor/_tenit.h
 -
+tensor/_tenus.h
+-
+
+../../include/tensor/_tenus.h
+name.h
+-
+tensor/name.h
+-
 
 ../../include/tensor/name.h
 name.h

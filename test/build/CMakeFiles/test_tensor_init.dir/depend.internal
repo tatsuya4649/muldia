@@ -23,5 +23,6 @@ CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o
  ../../include/tensor/_tein.h
  ../../include/tensor/_tenit.h
  ../../include/tensor/_tensor.h
+ ../../include/tensor/_tenus.h
  ../../include/tensor/name.h
  /home/tatsuya/Desktop/muldia/test/test_tensor_init.cpp

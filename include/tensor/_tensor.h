@@ -25,6 +25,7 @@
 #include <tensor/_dty.h>
 #include <tensor/_tein.h>
 #include <tensor/_tenit.h>
+#include <tensor/_tenus.h>
 
 namespace _md{
 	namespace _ten{
@@ -54,6 +55,9 @@ namespace _md{
 			//
 			_tensor() = delete;
 			_tensor(std::vector<T> t_) {
+				// the values stored in std::vector<T> are stored
+				// in memory in order from the _ptr pointer.
+				// note: do not consider the shape.
 				_shp = shp_v{static_cast<shape_t>(t_.size())};
 				size_t n = t_.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
@@ -64,6 +68,9 @@ namespace _md{
 				}
 			}
 			_tensor(std::initializer_list<T> l_){
+				// the values stored in std::initializer_list<T> are stored
+				// in memory in order from the _ptr pointer.
+				// note: do not consider the shape.
 				_shp = shp_v{static_cast<shape_t>(l_.size())};
 				size_t n = l_.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
@@ -73,7 +80,19 @@ namespace _md{
 					_emplace_back( *(l_.begin() + i) );
 				}
 			}
+			_tensor(nest_init_t<T,I> v_,shp_v l_){
+				// disassemble the nested n-dimensional std::vector,
+				// convert it to a linear array vector,and then allocate memory.
+				std::vector<T> total_v;
+				re_nest<T,I>(v_,total_v);
+				_shp = _shape{l_};
+				for(auto i=0;i<total_v.size();++i){
+					std::cout << total_v[i] << std::endl;
+				}
+			}
 			_tensor(void* p_,shp_v l_){
+				// the value of void* is stored in the memory for the
+				// number of elements in order from the _ptr pointer.
 				T* ele_p = (T*)p_;
 				_shp = l_;
 				size_t n = _shp.size();
@@ -85,6 +104,9 @@ namespace _md{
 				}
 			}
 			_tensor(shp_v l_,T value=0){
+				// with _ptr pointer as the starting point,allocate memory
+				// for the number of elements based on the shape and
+				// store value.
 				_shp = l_;
 				size_t n = _shp.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
@@ -133,6 +155,12 @@ namespace _md{
 				std::cout << "+----------------------------------+" << '\n'; 
 				std::cout << '\n';
 			}
+			//---------------------------------------------------
+			//			operator
+			//---------------------------------------------------
+			//_tensor<T,I-1,Allocator>& operator[](subsc_t s_){
+
+			//}
 		private:
 			template<typename... Args>
 			void _emplace_back(Args&&... args){
