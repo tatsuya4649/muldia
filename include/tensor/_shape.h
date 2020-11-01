@@ -9,6 +9,7 @@
 #include <name.h>
 #include <tensor/name.h>
 #include <core/shape.h>
+#include <tensor/_tenus.h>
 
 namespace _md{
 	namespace _ten{
@@ -20,9 +21,17 @@ namespace _md{
 			protected:
 				// class that holds the shape of _tensor
 				_shape _shp;
+				_shape& shp_subsc(subsc_t){
+					try{
+						_shp.pop_first();
+						return _shp;
+					}catch(_md::err::shape_subscript_error& error_){
+						std::cout << error_.what() << std::endl;
+					}
+				}
 				// in the tensor class, you must implement a override function
 				// (pure virtual function)
-				// ==============================
+				// =============================
 				// size() to get number of tensor element.
 				virtual shape_size_t size()  = 0;
 				// ndim() to get number of tensor dimension.

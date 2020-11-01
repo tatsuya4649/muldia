@@ -31,6 +31,8 @@ iostream
 -
 numeric
 -
+err/shape/range.h
+-
 
 ../../include/name.h
 string
@@ -94,12 +96,22 @@ type_traits
 iterator
 -
 
+../../include/tensor/_op.h
+name.h
+-
+tensor/name.h
+-
+tensor/_tenus.h
+-
+
 ../../include/tensor/_shape.h
 name.h
 -
 tensor/name.h
 -
 core/shape.h
+-
+tensor/_tenus.h
 -
 
 ../../include/tensor/_tein.h
@@ -167,6 +179,8 @@ tensor/_tenit.h
 -
 tensor/_tenus.h
 -
+tensor/_op.h
+-
 
 ../../include/tensor/_tenus.h
 name.h
@@ -178,6 +192,18 @@ tensor/name.h
 name.h
 -
 string
+-
+
+../../src/err/shape/range.h
+name.h
+-
+stdexcept
+-
+string
+-
+
+/home/tatsuya/Desktop/muldia/src/shape.cpp
+core/shape.h
 -
 
 /home/tatsuya/Desktop/muldia/test/test_tensor_init.cpp

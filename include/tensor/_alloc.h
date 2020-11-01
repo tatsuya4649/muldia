@@ -30,7 +30,14 @@ namespace _md{
 				using pointer = typename traits::pointer;
 				using const_pointer = typename traits::const_pointer;
 				_tensor_alloc(Allocator a_=Allocator()) : _alloc{a_}{}
-
+				virtual ~_tensor_alloc(){
+					if (_ptr != nullptr){
+						for(int i=0;i<_len;++i){
+							traits::destroy(_alloc,_ptr+i);
+						}
+						_alloc.deallocate(_ptr,_cap);
+					}
+				}
 				// in the tensor class,you must implement a override function
 				// (pure virtual function)
 				// =============================

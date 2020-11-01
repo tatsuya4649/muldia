@@ -10,6 +10,7 @@
 #include <initializer_list>
 #include <iostream>
 #include <numeric>
+#include <err/shape/range.h>
 
 namespace _md{
 	using shape_t = unsigned int;
@@ -95,6 +96,11 @@ namespace _md{
 				return res;
 			}
 			shape_size_t size() {return std::accumulate(_shp.begin(),_shp.end(),1,[](int init,int v){ return init * v;});}
+			void pop_first(){
+				if (_shp.size() == 1 or _shp.size() == 0)
+					throw _md::err::shape_subscript_error{"hello"};
+				_shp.erase(_shp.begin());
+			}
 
 		private:
 			shp_v 	       _shp;

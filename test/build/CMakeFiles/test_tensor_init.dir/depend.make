@@ -6,6 +6,7 @@ CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o: /hom
 
 CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o: ../../include/core/shape.h
 CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o: ../../include/name.h
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o: ../../src/err/shape/range.h
 CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o: /home/tatsuya/Desktop/muldia/src/shape.cpp
 
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/core/dtype.h
@@ -18,11 +19,13 @@ CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_dt
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_inest.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_inst.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_iter.h
+CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_op.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_shape.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tein.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tenit.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tensor.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/_tenus.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../include/tensor/name.h
+CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../../src/err/shape/range.h
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../test_tensor_init.cpp
 
