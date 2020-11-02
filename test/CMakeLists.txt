@@ -2,6 +2,6 @@ cmake_minimum_required(VERSION 3.8)
 
 project(test_tensor)
 
-include_directories(../include ../src ../test)
+include_directories(../muldia/include ../muldia/src ../test)
 
-add_executable(test_tensor_init ../src/name.cpp ../src/shape.cpp ../test/test_tensor_init.cpp)
+add_executable(test_tensor_init ../muldia/src/name.cpp ../muldia/src/shape.cpp ../test/test_tensor_init.cpp)

@@ -21,10 +21,20 @@ namespace _md{
 			protected:
 				// class that holds the shape of _tensor
 				_shape _shp;
-				_shape& shp_subsc(subsc_t){
+				_shape shp_subsc(subsc_t s_){
+					_shp_subsc(s_);
+					return _shp;
+				}
+				_shape con_shp_subsc(subsc_t s_) const{
+					_shape _vshp = _shp;
+					_vshp.pop_first();
+					return _vshp;
+				}
+				void _shp_subsc(subsc_t s_){
 					try{
+						if (s_ >= _shp[0])
+							throw _md::err::shape_subscript_error{""};
 						_shp.pop_first();
-						return _shp;
 					}catch(_md::err::shape_subscript_error& error_){
 						std::cout << error_.what() << std::endl;
 					}

@@ -57,31 +57,31 @@ include CMakeFiles/test_tensor_init.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/test_tensor_init.dir/flags.make
 
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o: CMakeFiles/test_tensor_init.dir/flags.make
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o: /home/tatsuya/Desktop/muldia/src/name.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o -c /home/tatsuya/Desktop/muldia/src/name.cpp
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o: CMakeFiles/test_tensor_init.dir/flags.make
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o: /home/tatsuya/Desktop/muldia/muldia/src/name.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o -c /home/tatsuya/Desktop/muldia/muldia/src/name.cpp
 
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/src/name.cpp > CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.i
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/muldia/src/name.cpp > CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/src/name.cpp -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.s
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/muldia/src/name.cpp -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
 
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o: CMakeFiles/test_tensor_init.dir/flags.make
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o: /home/tatsuya/Desktop/muldia/src/shape.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o -c /home/tatsuya/Desktop/muldia/src/shape.cpp
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: CMakeFiles/test_tensor_init.dir/flags.make
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: /home/tatsuya/Desktop/muldia/muldia/src/shape.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tatsuya/Desktop/muldia/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o -c /home/tatsuya/Desktop/muldia/muldia/src/shape.cpp
 
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/src/shape.cpp > CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.i
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tatsuya/Desktop/muldia/muldia/src/shape.cpp > CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
 
-CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/src/shape.cpp -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.s
+CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tatsuya/Desktop/muldia/muldia/src/shape.cpp -o CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
 
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: CMakeFiles/test_tensor_init.dir/flags.make
 CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o: ../test_tensor_init.cpp
@@ -98,15 +98,15 @@ CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.s: cmake_force
 
 # Object files for target test_tensor_init
 test_tensor_init_OBJECTS = \
-"CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o" \
-"CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o" \
+"CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o" \
+"CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o" \
 "CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o"
 
 # External object files for target test_tensor_init
 test_tensor_init_EXTERNAL_OBJECTS =
 
-test_tensor_init: CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o
-test_tensor_init: CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o
+test_tensor_init: CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
+test_tensor_init: CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
 test_tensor_init: CMakeFiles/test_tensor_init.dir/test_tensor_init.cpp.o
 test_tensor_init: CMakeFiles/test_tensor_init.dir/build.make
 test_tensor_init: CMakeFiles/test_tensor_init.dir/link.txt

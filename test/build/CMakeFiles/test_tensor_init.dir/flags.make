@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/tatsuya/Desktop/muldia/test/../include -I/home/tatsuya/Desktop/muldia/test/../src -I/home/tatsuya/Desktop/muldia/test/../test 
+CXX_INCLUDES = -I/home/tatsuya/Desktop/muldia/test/../muldia/include -I/home/tatsuya/Desktop/muldia/test/../muldia/src -I/home/tatsuya/Desktop/muldia/test/../test 
 

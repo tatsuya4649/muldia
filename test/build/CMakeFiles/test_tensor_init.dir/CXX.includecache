@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-../../include/core/dtype.h
+../../muldia/include/core/dtype.h
 name.h
 -
 typeinfo
@@ -18,7 +18,7 @@ iostream
 type_traits
 -
 
-../../include/core/shape.h
+../../muldia/include/core/shape.h
 name.h
 -
 vector
@@ -34,11 +34,11 @@ numeric
 err/shape/range.h
 -
 
-../../include/name.h
+../../muldia/include/name.h
 string
 -
 
-../../include/tensor/_alloc.h
+../../muldia/include/tensor/_alloc.h
 name.h
 -
 tensor/name.h
@@ -48,15 +48,15 @@ memory
 type_traits
 -
 
-../../include/tensor/_c_ctn.h
+../../muldia/include/tensor/_c_ctn.h
 name.h
 -
 
-../../include/tensor/_ctn.h
+../../muldia/include/tensor/_ctn.h
 name.h
 -
 
-../../include/tensor/_dty.h
+../../muldia/include/tensor/_dty.h
 name.h
 -
 tensor/name.h
@@ -66,7 +66,7 @@ core/dtype.h
 string
 -
 
-../../include/tensor/_inest.h
+../../muldia/include/tensor/_inest.h
 name.h
 -
 initializer_list
@@ -75,8 +75,18 @@ cstddef
 -
 vector
 -
+core/shape.h
+-
+tensor/_tenus.h
+-
+numeric
+-
+memory
+-
+type_traits
+-
 
-../../include/tensor/_inst.h
+../../muldia/include/tensor/_inst.h
 name.h
 -
 cstddef
@@ -84,7 +94,7 @@ cstddef
 iostream
 -
 
-../../include/tensor/_iter.h
+../../muldia/include/tensor/_iter.h
 name.h
 -
 tensor/name.h
@@ -96,7 +106,7 @@ type_traits
 iterator
 -
 
-../../include/tensor/_op.h
+../../muldia/include/tensor/_op.h
 name.h
 -
 tensor/name.h
@@ -104,7 +114,7 @@ tensor/name.h
 tensor/_tenus.h
 -
 
-../../include/tensor/_shape.h
+../../muldia/include/tensor/_shape.h
 name.h
 -
 tensor/name.h
@@ -114,7 +124,7 @@ core/shape.h
 tensor/_tenus.h
 -
 
-../../include/tensor/_tein.h
+../../muldia/include/tensor/_tein.h
 name.h
 -
 tensor/name.h
@@ -122,7 +132,7 @@ tensor/name.h
 cstddef
 -
 
-../../include/tensor/_tenit.h
+../../muldia/include/tensor/_tenit.h
 name.h
 -
 tensor/name.h
@@ -136,7 +146,7 @@ type_traits
 iterator
 -
 
-../../include/tensor/_tensor.h
+../../muldia/include/tensor/_tensor.h
 name.h
 -
 tensor/name.h
@@ -182,28 +192,24 @@ tensor/_tenus.h
 tensor/_op.h
 -
 
-../../include/tensor/_tenus.h
+../../muldia/include/tensor/_tenus.h
 name.h
 -
 tensor/name.h
 -
 
-../../include/tensor/name.h
+../../muldia/include/tensor/name.h
 name.h
 -
 string
 -
 
-../../src/err/shape/range.h
+../../muldia/src/err/shape/range.h
 name.h
 -
 stdexcept
 -
 string
--
-
-/home/tatsuya/Desktop/muldia/src/shape.cpp
-core/shape.h
 -
 
 /home/tatsuya/Desktop/muldia/test/test_tensor_init.cpp

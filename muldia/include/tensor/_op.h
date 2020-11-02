@@ -23,7 +23,11 @@ namespace _md{
 				// (pure virtual function)
 				// =========================
 				// operator[] to get a tensor one dimension smaller than the current dimension
-				virtual void operator[](subsc_t) = 0;
+				/*  user-defined subscript operators can convert shapes,convert
+				 *  reserverd memory size,free memory if necessary.
+				 */
+				virtual _tensor_operator& operator[](subsc_t) = 0;
+				virtual const _tensor_operator& operator[](subsc_t) const = 0;
 				// operator() to get a tensor information
 				virtual _tensor_operator& operator()() = 0;
 				// operator= to substitute a tensor

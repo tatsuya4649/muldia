@@ -123,59 +123,59 @@ test_tensor_init/fast:
 	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/build
 .PHONY : test_tensor_init/fast
 
-home/tatsuya/Desktop/muldia/src/name.o: home/tatsuya/Desktop/muldia/src/name.cpp.o
+home/tatsuya/Desktop/muldia/muldia/src/name.o: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 
-.PHONY : home/tatsuya/Desktop/muldia/src/name.o
-
-# target to build an object file
-home/tatsuya/Desktop/muldia/src/name.cpp.o:
-	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.o
-.PHONY : home/tatsuya/Desktop/muldia/src/name.cpp.o
-
-home/tatsuya/Desktop/muldia/src/name.i: home/tatsuya/Desktop/muldia/src/name.cpp.i
-
-.PHONY : home/tatsuya/Desktop/muldia/src/name.i
-
-# target to preprocess a source file
-home/tatsuya/Desktop/muldia/src/name.cpp.i:
-	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.i
-.PHONY : home/tatsuya/Desktop/muldia/src/name.cpp.i
-
-home/tatsuya/Desktop/muldia/src/name.s: home/tatsuya/Desktop/muldia/src/name.cpp.s
-
-.PHONY : home/tatsuya/Desktop/muldia/src/name.s
-
-# target to generate assembly for a file
-home/tatsuya/Desktop/muldia/src/name.cpp.s:
-	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/name.cpp.s
-.PHONY : home/tatsuya/Desktop/muldia/src/name.cpp.s
-
-home/tatsuya/Desktop/muldia/src/shape.o: home/tatsuya/Desktop/muldia/src/shape.cpp.o
-
-.PHONY : home/tatsuya/Desktop/muldia/src/shape.o
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.o
 
 # target to build an object file
-home/tatsuya/Desktop/muldia/src/shape.cpp.o:
-	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.o
-.PHONY : home/tatsuya/Desktop/muldia/src/shape.cpp.o
+home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o:
+	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 
-home/tatsuya/Desktop/muldia/src/shape.i: home/tatsuya/Desktop/muldia/src/shape.cpp.i
+home/tatsuya/Desktop/muldia/muldia/src/name.i: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 
-.PHONY : home/tatsuya/Desktop/muldia/src/shape.i
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.i
 
 # target to preprocess a source file
-home/tatsuya/Desktop/muldia/src/shape.cpp.i:
-	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.i
-.PHONY : home/tatsuya/Desktop/muldia/src/shape.cpp.i
+home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i:
+	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 
-home/tatsuya/Desktop/muldia/src/shape.s: home/tatsuya/Desktop/muldia/src/shape.cpp.s
+home/tatsuya/Desktop/muldia/muldia/src/name.s: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
 
-.PHONY : home/tatsuya/Desktop/muldia/src/shape.s
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.s
 
 # target to generate assembly for a file
-home/tatsuya/Desktop/muldia/src/shape.cpp.s:
-	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/src/shape.cpp.s
-.PHONY : home/tatsuya/Desktop/muldia/src/shape.cpp.s
+home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s:
+	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
+
+home/tatsuya/Desktop/muldia/muldia/src/shape.o: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
+
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.o
+
+# target to build an object file
+home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o:
+	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
+
+home/tatsuya/Desktop/muldia/muldia/src/shape.i: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
+
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.i
+
+# target to preprocess a source file
+home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i:
+	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
+
+home/tatsuya/Desktop/muldia/muldia/src/shape.s: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
+
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.s
+
+# target to generate assembly for a file
+home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s:
+	$(MAKE) -f CMakeFiles/test_tensor_init.dir/build.make CMakeFiles/test_tensor_init.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
+.PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
 
 test_tensor_init.o: test_tensor_init.cpp.o
 
@@ -213,12 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test_tensor_init"
-	@echo "... home/tatsuya/Desktop/muldia/src/name.o"
-	@echo "... home/tatsuya/Desktop/muldia/src/name.i"
-	@echo "... home/tatsuya/Desktop/muldia/src/name.s"
-	@echo "... home/tatsuya/Desktop/muldia/src/shape.o"
-	@echo "... home/tatsuya/Desktop/muldia/src/shape.i"
-	@echo "... home/tatsuya/Desktop/muldia/src/shape.s"
+	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.o"
+	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.i"
+	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.s"
+	@echo "... home/tatsuya/Desktop/muldia/muldia/src/shape.o"
+	@echo "... home/tatsuya/Desktop/muldia/muldia/src/shape.i"
+	@echo "... home/tatsuya/Desktop/muldia/muldia/src/shape.s"
 	@echo "... test_tensor_init.o"
 	@echo "... test_tensor_init.i"
 	@echo "... test_tensor_init.s"

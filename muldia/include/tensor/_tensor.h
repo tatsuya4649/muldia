@@ -52,6 +52,7 @@ namespace _md{
 			using _tensor_alloc<T,Allocator>::_cap;
 			using _tensor_alloc<T,Allocator>::_alloc;
 			using _tensor_alloc<T,Allocator>::_ptr;
+			using typename _tensor_alloc<T,Allocator>::pointer;
 		public:
 			using const_reference = const T&;
 			// --------------------------------------------------
@@ -119,6 +120,14 @@ namespace _md{
 					_emplace_back( *(ele_p + i) );
 				}
 			}
+			_tensor(pointer p_,_shape shape_){
+				std::cout << "is this called ?" << std::endl;
+				_ptr = p_;
+				_shp = shape_;
+				size_t n = _shp.size();
+				while(_cap < n) _cap *= EXTENSION_RATE;
+				this->_base = this->_ptr;
+			}
 			_tensor(shp_v l_,T value=0){
 				// with _ptr pointer as the starting point,allocate memory
 				// for the number of elements based on the shape and
@@ -167,7 +176,6 @@ namespace _md{
 			// --------------------------------------------------
 			using typename _tensor_alloc<T,Allocator>::traits;
 			using typename _tensor_alloc<T,Allocator>::size_type;
-			using typename _tensor_alloc<T,Allocator>::pointer;
 			size_type cap() const override{ return _cap; }
 			size_type len() const override{ return _len; }
 			bool empty() const noexcept override{ return !_len; }
@@ -213,9 +221,17 @@ namespace _md{
 			_tensor<T,I,Allocator>& operator=(_tensor<T,I,Allocator>&& ten_){
 				swap(ten_);
 			}
-			void operator[](subsc_t sb_)override{
-				shp_subsc(sb_);
-				std::cout << _shp << std::endl;
+			_tensor<T,I-1,Allocator>& operator[](subsc_t sb_)override{
+				pointer _subsc_ptr = nest_scratch<T,I,Allocator>(sb_,_shp(),_ptr);
+				_shape _subsc_shp = shp_subsc(sb_);
+				return _tensor<T,I-1,Allocator>{_subsc_ptr,_subsc_shp};
+				//return *this;
+			}
+			const _tensor<T,I-1,Allocator>& operator[](subsc_t sb_)const override{
+				pointer _subsc_ptr = nest_scratch<T,I,Allocator>(sb_,_shp(),_ptr);
+				_shape _subsc_shp = con_shp_subsc(sb_);
+				return _tensor<T,I-1,Allocator>{_subsc_ptr,_subsc_shp};
+				//return *this;
 			}
 		private:
 			template<typename... Args>
