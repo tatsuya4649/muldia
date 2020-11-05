@@ -22,8 +22,12 @@ namespace _md{
 				// class that holds the shape of _tensor
 				_shape _shp;
 				_shape shp_subsc(subsc_t s_){
-					_shp_subsc(s_);
-					return _shp;
+					std::cout << _shp << std::endl;
+					_shape new_shp = _shp;
+					//_shp_subsc(s_,new_shp);
+					new_shp.pop_first();
+					std::cout << new_shp << std::endl;
+					return new_shp;
 				}
 				_shape con_shp_subsc(subsc_t s_) const{
 					_shape _vshp = _shp;

@@ -26,8 +26,8 @@ namespace _md{
 				/*  user-defined subscript operators can convert shapes,convert
 				 *  reserverd memory size,free memory if necessary.
 				 */
-				virtual _tensor_operator& operator[](subsc_t) = 0;
-				virtual const _tensor_operator& operator[](subsc_t) const = 0;
+				//virtual _tensor_operator& operator[](subsc_t) & = 0;
+				//virtual _tensor_operator& operator[](subsc_t) && = 0;
 				// operator() to get a tensor information
 				virtual _tensor_operator& operator()() = 0;
 				// operator= to substitute a tensor

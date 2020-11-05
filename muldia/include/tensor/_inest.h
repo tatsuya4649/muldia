@@ -19,14 +19,13 @@ namespace _md{
 	namespace _ten{
 		template<typename T,dim_t I>
 		struct nest_init_list{
-			using nested_type = typename nest_init_list<T,I-1>::type;
+			constexpr static const dim_t C = I-1;
+			using nested_type = typename nest_init_list<T,C>::type;
 			using type = typename std::vector<nested_type>;
-			type _v;
 		};
 		template<typename T>
 		struct nest_init_list<T,0>{
 			using type = T;
-			type _v;
 		};
 		template<typename T,dim_t I>
 		using nest_init_t = typename nest_init_list<T,I>::type;
@@ -118,8 +117,8 @@ namespace _md{
 			}
 		}; // struct _scra_v
 
-		template<typename T,dim_t A,typename Allocator=std::allocator<T>>
-		pointer<Allocator>& nest_scratch(subsc_t ss_,shp_v shape_vector_,const pointer<Allocator>& ptr_){
+		template<typename T,typename Allocator=std::allocator<T>>
+		pointer<Allocator> nest_scratch(subsc_t ss_,shp_v shape_vector_,const pointer<Allocator>& ptr_){
 			static_assert(std::is_same<T,typename Allocator::value_type>::value,"nest_scratch template type T and type allocator value_type must have same type!");
 			shape_t t_dim_ele_number = std::accumulate((shape_vector_.begin()+1),shape_vector_.end(),1,[](shape_t a,shape_t b){ return a*b; });
 			subsc_t n_dim_start_index = t_dim_ele_number * ss_;
