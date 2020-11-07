@@ -1,3 +1,0 @@
-/home/tatsuya/Desktop/muldia/test/build/CMakeFiles/rebuild_cache.dir
-/home/tatsuya/Desktop/muldia/test/build/CMakeFiles/edit_cache.dir
-/home/tatsuya/Desktop/muldia/test/build/CMakeFiles/test_tensor_init.dir

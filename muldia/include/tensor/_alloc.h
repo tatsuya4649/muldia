@@ -49,9 +49,7 @@ namespace _md{
 				virtual bool empty() const noexcept = 0;
 				
 				allocator_type _alloc;
-			public:
 				pointer _ptr;				// pointer of tensor
-			protected:
 				size_type _cap = 1;
 				size_type _len = 0;
 
@@ -82,6 +80,8 @@ namespace _md{
 					_ptr = ptr;
 					_cap *= r;
 				}
+			public:
+				pointer ptr() const noexcept { return _ptr; }
 		}; // class tensor_alloc
 	} // namespace _ten
 } // namespace _md

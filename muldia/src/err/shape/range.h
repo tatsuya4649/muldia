@@ -6,7 +6,7 @@
 #define ERR_SHAPE_ERROR_H
 
 #include <name.h>
-#include <stdexcept>
+//#include <stdexcept>
 #include <string>
 
 namespace _md{
@@ -17,7 +17,7 @@ namespace _md{
 			explicit shape_subscript_error(const std::string& what_arg) : message{what_arg}{}
 			explicit shape_subscript_error(const char* what_arg):message{what_arg}{}
 			const char* what() const noexcept{
-				return "hello";
+				return message.c_str();
 			}
 		}; // class shape_subscript_error
 	} // namespace err
