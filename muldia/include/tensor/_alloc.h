@@ -13,7 +13,7 @@
 
 namespace _md{
 	namespace _ten{
-		constexpr const int EXTENSION_RATE = 2;
+		constexpr const unsigned int EXTENSION_RATE = 2;
 
 		template<typename T,typename Allocator = std::allocator<T>>
 		class _tensor_alloc{

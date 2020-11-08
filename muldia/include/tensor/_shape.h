@@ -10,6 +10,9 @@
 #include <tensor/name.h>
 #include <core/shape.h>
 #include <tensor/_tenus.h>
+#include <err/shape/range.h>
+#include <err/shape/shape.h>
+#include <err/shape/size.h>
 
 namespace _md{
 	namespace _ten{
@@ -21,9 +24,18 @@ namespace _md{
 			protected:
 				// class that holds the shape of _tensor
 				_shape _shp;
-				_shape shp_subsc(subsc_t s_){
+				_shape shp_subsc(subsc_t s_) const{
+					if (s_ >= _shp[0])
+						throw _md::err::shape_subscript_error{"subsc_t(subscription) must be less than the number of leading elements in the shape"};
 					_shape new_shp = _shp;
 					//_shp_subsc(s_,new_shp);
+					new_shp.pop_first();
+					return new_shp;
+				}
+				_shape shp_subsc(const _shape shp_,subsc_t s_) const{
+					if (s_ >= shp_[0])
+						throw _md::err::shape_subscript_error{"subsc_t(subscription) must be less than the number of leading elements in the shape"};
+					_shape new_shp = shp_;
 					new_shp.pop_first();
 					return new_shp;
 				}

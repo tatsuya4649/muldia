@@ -135,6 +135,12 @@ core/shape.h
 -
 tensor/_tenus.h
 -
+err/shape/range.h
+-
+err/shape/shape.h
+-
+err/shape/size.h
+-
 
 ../../../../muldia/include/tensor/_tein.h
 name.h
@@ -205,6 +211,8 @@ tensor/_op.h
 -
 tensor/_c.h
 -
+err/shape/shape.h
+-
 
 ../../../../muldia/include/tensor/_tenus.h
 name.h
@@ -224,8 +232,28 @@ name.h
 string
 -
 
+../../../../muldia/src/err/name.h
+
 ../../../../muldia/src/err/shape/range.h
 name.h
+-
+err/name.h
+-
+string
+-
+
+../../../../muldia/src/err/shape/shape.h
+name.h
+-
+err/name.h
+-
+string
+-
+
+../../../../muldia/src/err/shape/size.h
+name.h
+-
+err/name.h
 -
 string
 -

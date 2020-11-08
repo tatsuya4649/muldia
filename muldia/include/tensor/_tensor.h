@@ -28,6 +28,7 @@
 #include <tensor/_tenus.h>
 #include <tensor/_op.h>
 #include <tensor/_c.h>
+#include <err/shape/shape.h>
 
 namespace _md{
 	namespace _ten{
@@ -147,26 +148,54 @@ namespace _md{
 				}
 			}
 			_tensor(const _tensor& ten_){
-				while(_cap < ten_._len) _cap *= EXTENSION_RATE;
-				_shp = ten_._shp;
-				_len = ten_._len;
-				_ilen = ten_._ilen;
-				d_type = ten_.d_type;
-				_ptr = _alloc.allocate(_cap);
-				this->_base = _ptr;
-				for(int i=0;i<_len;++i){
-					traits::construct(_alloc,_ptr+i,*(ten_._ptr+i));
+				if (ten_.have_c_tensor()){
+					size_t n = ten_.c_len();
+					while(_cap < n) _cap *= EXTENSION_RATE;
+					_shp = ten_.c_shp();
+					_len = ten_.c_len();
+					_ilen = ten_.c_len();
+					d_type = ten_.d_type;
+					_ptr = _alloc.allocate(_cap);
+					this->_base = _ptr;
+					for(int i=0;i<_len;++i){
+						traits::construct(_alloc,_ptr+i,*(ten_.c_start_ptr()+i));
+					}
+					ten_.child_delete();
+				}else{
+					while(_cap < ten_._len) _cap *= EXTENSION_RATE;
+					_shp = ten_._shp;
+					_len = ten_._len;
+					_ilen = ten_._ilen;
+					d_type = ten_.d_type;
+					_ptr = _alloc.allocate(_cap);
+					this->_base = _ptr;
+					for(int i=0;i<_len;++i){
+						traits::construct(_alloc,_ptr+i,*(ten_._ptr+i));
+					}
 				}
 			}
 			_tensor(_tensor&& ten_){
-				_cap = ten_._cap;
-				_shp = ten_._shp;
-				_len = ten_._len;
-				_ilen = ten_._ilen;
-				d_type = ten_.d_type;
-				_ptr = ten_._ptr;
-				this->_base = ten_._base;
-				ten_._ptr = nullptr;
+				if (ten_.have_c_tensor()){
+					size_t n = ten_.c_len();
+					while(_cap < n) _cap *= EXTENSION_RATE;
+					_shp = ten_.c_shp();
+					_len = ten_.c_len();
+					_ilen = _len;
+					d_type = ten_.d_type;
+					_ptr = ten_.c_start_ptr();
+					this->_base = _ptr;
+					ten_._ptr = nullptr;
+					ten_.child_delete();
+				}else{
+					_cap = ten_._cap;
+					_shp = ten_._shp;
+					_len = ten_._len;
+					_ilen = ten_._ilen;
+					d_type = ten_.d_type;
+					_ptr = ten_._ptr;
+					this->_base = ten_._base;
+					ten_._ptr = nullptr;
+				}
 			}
 			~_tensor()override{}
 			// --------------------------------------------------
@@ -239,8 +268,8 @@ namespace _md{
 			//			child	
 			//---------------------------------------------------
 			using _tensor_child<T,Allocator>::_c_start_ptr;
-			using _tensor_child<T,Allocator>::_c_len;
 			using _tensor_child<T,Allocator>::_c_shp;
+			using _tensor_child<T,Allocator>::_c_len;
 			using _tensor_child<T,Allocator>::child_delete;
 			using _tensor_child<T,Allocator>::have_c_tensor;
 			using _tensor_child<T,Allocator>::_c_shp_size;
@@ -254,17 +283,26 @@ namespace _md{
 				info();
 				return *this;
 			}
-			_tensor<T,Allocator>& operator=(_tensor<T,Allocator>& ten_){
+			_tensor<T,Allocator>& operator=(const _tensor<T,Allocator>& ten_){
 				return copy(ten_);
 			}
 			_tensor<T,Allocator>& operator=(_tensor<T,Allocator>&& ten_){
 				return swap(std::move(ten_));
 			}
 			_tensor<T,Allocator>& operator[](subsc_t sb_) &{
-				pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,_shp(),_ptr);
-				_shape _subsc_shp = shp_subsc(sb_);
-				_c_start_ptr = _subsc_ptr;	// child tensor start pointer
-				_c_shp = _subsc_shp;		// child tensor shape
+				if (have_c_tensor()){
+					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,c_shp()(),c_start_ptr());
+					_shape _subsc_shp = shp_subsc(c_shp(),sb_);
+					_c_start_ptr = _subsc_ptr;	// child tensor start pointer
+					_c_shp = _subsc_shp;		// child tensor shape
+					_c_len = _subsc_shp.size();	// child tensor length
+				}else{
+					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,_shp(),_ptr);
+					_shape _subsc_shp = shp_subsc(sb_);
+					_c_start_ptr = _subsc_ptr;	// child tensor start pointer
+					_c_shp = _subsc_shp;		// child tensor shape
+					_c_len = _subsc_shp.size();	// child tensor length
+				}
 				return *this;
 			}
 			//---------------------------------------------------
@@ -278,16 +316,16 @@ namespace _md{
 				++_len;
 				this->_ilen = _len;
 			}
-			_tensor<T,Allocator>& copy(_tensor<T,Allocator>& ten_){
+			_tensor<T,Allocator>& copy(const _tensor<T,Allocator>& ten_){
 				if (have_c_tensor()){
 					if (ten_.have_c_tensor()){
-						if (_c_shp != ten_.c_shp()){std::cout << "error1";}
+						if (_c_shp != ten_.c_shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
 						for (auto i=0;i<_c_shp_size();++i){
 							*(_c_start_ptr + i) = *(ten_.c_start_ptr() + i);
 						}
 						ten_.child_delete();
 					}else{
-						if (_c_shp != ten_.shp()){std::cout << "error1";}
+						if (_c_shp != ten_.shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s tensor's shape (ten_.c_shp) must have same shape."};}
 						for (auto i=0;i<_c_shp_size();++i){
 							*(_c_start_ptr + i) = *(ten_.ptr() + i);
 						}
@@ -295,7 +333,7 @@ namespace _md{
 					child_delete();
 				}else{
 					if (ten_.have_c_tensor()){
-						if (_shp != ten_.c_shp()){std::cout << "error2";}
+						if (_shp != ten_.c_shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
 						for(auto i=0;i<_len;++i){
 							traits::destroy(_alloc,_ptr+i);
 						}
@@ -313,6 +351,7 @@ namespace _md{
 						}
 						ten_.child_delete();
 					}else{
+						if (_shp != ten_._shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
 						for(auto i=0;i<_len;++i){
 							traits::destroy(_alloc,_ptr+i);
 						}
@@ -335,11 +374,13 @@ namespace _md{
 			_tensor<T,Allocator>& swap(_tensor<T,Allocator>&& ten_){
 				if (have_c_tensor()){
 					if (ten_.have_c_tensor()){
+						if (_c_shp != ten_.c_shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
 						for (auto i=0;i<_c_shp_size();++i){
 							*(_c_start_ptr+i) = *(ten_.c_start_ptr()+i);
 						}
 						ten_.child_delete();
 					}else{
+						if (_c_shp != ten_.shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
 						for (auto i=0;i<_c_shp_size();++i){
 							*(_c_start_ptr+i) = *(ten_.ptr()+i);
 						}
@@ -348,6 +389,7 @@ namespace _md{
 					child_delete();
 				}else{
 					if (ten_.have_c_tensor()){
+						if (_shp != ten_.c_shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
 						for(auto i=0;i<_len;++i){
 							traits::destroy(_alloc,_ptr+i);
 						}
@@ -362,6 +404,7 @@ namespace _md{
 						_base = _ptr;
 						ten_.child_delete();
 					}else{
+						if (_shp != ten_._shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
 						for(auto i=0;i<_len;++i){
 							traits::destroy(_alloc,_ptr+i);
 						}

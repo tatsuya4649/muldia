@@ -34,12 +34,12 @@ namespace _md{
 				}
 				shape_size_t _c_shp_size() { return _c_shp.size(); }
 				// member
-				pointer _c_start_ptr = nullptr;
-				size_type _c_len = 0;
-				_shape _c_shp;
+				mutable pointer _c_start_ptr = nullptr;
+				mutable size_type _c_len = 0;
+				mutable _shape _c_shp;
 			public:
 				// if child tensor, delete
-				virtual void child_delete(){
+				virtual void child_delete() const{
 					if (have_c_tensor()){
 						_c_start_ptr = nullptr;
 						_c_len = 0;

@@ -6,6 +6,7 @@ CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o: /hom
 
 CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: ../../../../muldia/include/core/shape.h
 CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: ../../../../muldia/include/name.h
+CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: ../../../../muldia/src/err/name.h
 CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: ../../../../muldia/src/err/shape/range.h
 CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o: /home/tatsuya/Desktop/muldia/muldia/src/shape.cpp
 
@@ -28,6 +29,9 @@ CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/include/tensor/_ten
 CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/include/tensor/_tenus.h
 CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/include/tensor/name.h
 CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/src/err/child/have.h
+CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/src/err/name.h
 CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/src/err/shape/range.h
+CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/src/err/shape/shape.h
+CMakeFiles/subscript.dir/subscript.cpp.o: ../../../../muldia/src/err/shape/size.h
 CMakeFiles/subscript.dir/subscript.cpp.o: ../subscript.cpp
 

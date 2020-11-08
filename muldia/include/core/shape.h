@@ -19,8 +19,8 @@ namespace _md{
 	using shp_l = std::initializer_list<shape_t>;
 	class _shape{
 		private:
-			bool _chck_shape_size(shape_t i){
-				if ( i >= _shape_size or i < 0){
+			bool _chck_shape_size(shape_t i) const noexcept{
+				if ( i >= _shp.at(0) or i < 0){
 					return false;
 				}else{
 					return true;
@@ -70,15 +70,17 @@ namespace _md{
 				}
 				return *this;
 			}
-			shape_t operator[](shape_t i){ 
-				if (_chck_shape_size(i)){
+			shape_t operator[](shape_t i) const{ 
+				if (!_chck_shape_size(i)){
 					// error handle (out_of_index)
+					throw err::shape_subscript_error{"subscript i(shape_t) must be less than the number of leading elements in the shape"};
 				}
 				return _shp[i];
 			}
-			shape_t operator()(shape_t i){
-				if (_chck_shape_size(i)){
+			shape_t operator()(shape_t i) const{
+				if (!_chck_shape_size(i)){
 					// error handle (out_of_index)
+					throw err::shape_subscript_error{"subscript i(shape_t) must be less than the number of leading elements in the shape"};
 				}
 				return _shp[i];
 			}

@@ -6,11 +6,11 @@
 #define ERR_SHAPE_ERROR_H
 
 #include <name.h>
-//#include <stdexcept>
+#include <err/name.h>
 #include <string>
 
 namespace _md{
-	namespace err{
+	namespace _err{
 		class shape_subscript_error{
 			std::string message;
 			public:
