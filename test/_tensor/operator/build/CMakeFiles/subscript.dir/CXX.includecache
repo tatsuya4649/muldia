@@ -64,6 +64,14 @@ err/child/have.h
 name.h
 -
 
+../../../../muldia/include/tensor/_concept.h
+name.h
+-
+tensor/name.h
+-
+type_traits
+-
+
 ../../../../muldia/include/tensor/_ctn.h
 name.h
 -
@@ -212,6 +220,8 @@ tensor/_op.h
 tensor/_c.h
 -
 err/shape/shape.h
+-
+tensor/_concept.h
 -
 
 ../../../../muldia/include/tensor/_tenus.h

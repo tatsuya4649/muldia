@@ -29,11 +29,15 @@
 #include <tensor/_op.h>
 #include <tensor/_c.h>
 #include <err/shape/shape.h>
+#include <tensor/_concept.h>
+#include <tensor/_open.h>
+#include <algorithm>
+
 
 namespace _md{
 	namespace _ten{
-		template<typename T,typename Allocator = std::allocator<T>>
-		class _tensor : public _tein,public _tensor_shape, public _tensor_alloc<T,Allocator>,public _tensor_dtype<T>,public _tensor_iter<T,Allocator>,public _tensor_operator,public _tensor_child<T,Allocator>{
+		template<typename T = int,typename Allocator = std::allocator<T>>
+		class _tensor : public _tein,public _tensor_shape, public _tensor_alloc<T,Allocator>,public _tensor_dtype<T>,public _tensor_iter<T,Allocator>,public _tensor_operator,public _tensor_child<T,Allocator>,public _tensor_concept<T>{
 			//
 			// a low-level tensor class shared by all high-level tensor
 			// classes defined in muldia.
@@ -70,7 +74,11 @@ namespace _md{
 			// * _tensor a{{a,b,c},{a,b,v},{2,3}} => pass nested std::vector<T> and shp_v
 			// * _tensor a{{1,2,3},0} => pass shp_v and value(=0)
 			//
-			_tensor() = delete;
+			_tensor(){
+				_shp = shp_v{0};
+				_ptr = nullptr;
+				_base = nullptr;
+			}
 			_tensor(std::vector<T> t_) {
 				// the values stored in std::vector<T> are stored
 				// in memory in order from the _ptr pointer.
@@ -143,7 +151,6 @@ namespace _md{
 				_ptr = _alloc.allocate(_cap);
 				this->_base = p_;
 				for(int i=0;i<n;++i){
-					std::cout << *(p_+i) << std::endl;
 					_emplace_back( *(p_+i) );
 				}
 			}
@@ -243,7 +250,7 @@ namespace _md{
 				std::cout << " tensor element type => " << d_type << '\n';
 				std::cout << "+----------------------------------+" << '\n';
 				std::cout << "=============== value ==============" << '\n';
-				unsigned int n = _c_start_ptr==nullptr?_cap:_c_shp.size();
+				unsigned int n = (_c_start_ptr==nullptr?_len:c_len());
 				for (unsigned int i=0;i<n;++i){
 					if (_c_start_ptr == nullptr)
 						std::cout << *(_ptr+i);
@@ -289,7 +296,7 @@ namespace _md{
 			_tensor<T,Allocator>& operator=(_tensor<T,Allocator>&& ten_){
 				return swap(std::move(ten_));
 			}
-			_tensor<T,Allocator>& operator[](subsc_t sb_) &{
+			_tensor<T,Allocator>& operator[](subsc_t sb_) & override{
 				if (have_c_tensor()){
 					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,c_shp()(),c_start_ptr());
 					_shape _subsc_shp = shp_subsc(c_shp(),sb_);
@@ -304,6 +311,51 @@ namespace _md{
 					_c_len = _subsc_shp.size();	// child tensor length
 				}
 				return *this;
+			}
+			void _have_ptr(){
+				if (_ptr == nullptr) std::cout << "error" << std::endl;
+			}
+			template<typename K>
+			void _op(_op_type e_,K k_){
+				if (have_c_tensor()){
+					eq_type(c_start_ptr(),c_len(),e_,k_);
+				}else{
+					_have_ptr();
+					eq_type(_ptr,_len,e_,k_);
+				}
+			}
+			template<typename I>
+			_tensor<T,Allocator>& operator+=(I t_){
+				_op(_op_type::plus_eq,t_);
+				return *this;
+			}
+			template<typename I>
+			_tensor<T,Allocator>& operator-=(I t_){
+				_op(_op_type::minus_eq,t_);
+				return *this;
+			}
+			template<typename I>
+			_tensor<T,Allocator>& operator*=(I t_){
+				_op(_op_type::multi_eq,t_);
+				return *this;
+			}
+			_tensor<T,Allocator>& operator++(){
+				_op(_op_type::plus_plus,0);
+				return *this;
+			}
+			_tensor<T,Allocator> operator++(int){
+				_tensor<T,Allocator> res = *this;
+				++*this;
+				return res;
+			}
+			_tensor<T,Allocator>& operator--(){
+				_op(_op_type::minus_minus,0);
+				return *this;
+			}
+			_tensor<T,Allocator> operator--(int){
+				_tensor<T,Allocator> res = *this;
+				--*this;
+				return res;
 			}
 			//---------------------------------------------------
 			//			etc.	

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/default.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o CMakeFiles/default.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o CMakeFiles/default.dir/default.cpp.o  -o default 

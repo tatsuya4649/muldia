@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/tatsuya/Desktop/muldia/test/_tensor/operator/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/subscript.dir/all
+all: CMakeFiles/add.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/subscript.dir/clean
+clean: CMakeFiles/add.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/subscript.dir
+# Target rules for target CMakeFiles/add.dir
 
 # All Build rule for target.
-CMakeFiles/subscript.dir/all:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/depend
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles --progress-num=1,2,3,4 "Built target subscript"
-.PHONY : CMakeFiles/subscript.dir/all
+CMakeFiles/add.dir/all:
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/depend
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles --progress-num=1,2,3,4 "Built target add"
+.PHONY : CMakeFiles/add.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/subscript.dir/rule: cmake_check_build_system
+CMakeFiles/add.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/subscript.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/add.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles 0
-.PHONY : CMakeFiles/subscript.dir/rule
+.PHONY : CMakeFiles/add.dir/rule
 
 # Convenience name for target.
-subscript: CMakeFiles/subscript.dir/rule
+add: CMakeFiles/add.dir/rule
 
-.PHONY : subscript
+.PHONY : add
 
 # clean rule for target.
-CMakeFiles/subscript.dir/clean:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/clean
-.PHONY : CMakeFiles/subscript.dir/clean
+CMakeFiles/add.dir/clean:
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/clean
+.PHONY : CMakeFiles/add.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

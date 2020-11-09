@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named subscript
+# Target rules for targets named add
 
 # Build rule for target.
-subscript: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 subscript
-.PHONY : subscript
+add: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 add
+.PHONY : add
 
 # fast build rule for target.
-subscript/fast:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/build
-.PHONY : subscript/fast
+add/fast:
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/build
+.PHONY : add/fast
+
+add.o: add.cpp.o
+
+.PHONY : add.o
+
+# target to build an object file
+add.cpp.o:
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/add.cpp.o
+.PHONY : add.cpp.o
+
+add.i: add.cpp.i
+
+.PHONY : add.i
+
+# target to preprocess a source file
+add.cpp.i:
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/add.cpp.i
+.PHONY : add.cpp.i
+
+add.s: add.cpp.s
+
+.PHONY : add.s
+
+# target to generate assembly for a file
+add.cpp.s:
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/add.cpp.s
+.PHONY : add.cpp.s
 
 home/tatsuya/Desktop/muldia/muldia/src/name.o: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 
@@ -129,7 +156,7 @@ home/tatsuya/Desktop/muldia/muldia/src/name.o: home/tatsuya/Desktop/muldia/muldi
 
 # target to build an object file
 home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 
 home/tatsuya/Desktop/muldia/muldia/src/name.i: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
@@ -138,7 +165,7 @@ home/tatsuya/Desktop/muldia/muldia/src/name.i: home/tatsuya/Desktop/muldia/muldi
 
 # target to preprocess a source file
 home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 
 home/tatsuya/Desktop/muldia/muldia/src/name.s: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
@@ -147,7 +174,7 @@ home/tatsuya/Desktop/muldia/muldia/src/name.s: home/tatsuya/Desktop/muldia/muldi
 
 # target to generate assembly for a file
 home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
 
 home/tatsuya/Desktop/muldia/muldia/src/shape.o: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
@@ -156,7 +183,7 @@ home/tatsuya/Desktop/muldia/muldia/src/shape.o: home/tatsuya/Desktop/muldia/muld
 
 # target to build an object file
 home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
 
 home/tatsuya/Desktop/muldia/muldia/src/shape.i: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
@@ -165,7 +192,7 @@ home/tatsuya/Desktop/muldia/muldia/src/shape.i: home/tatsuya/Desktop/muldia/muld
 
 # target to preprocess a source file
 home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
 
 home/tatsuya/Desktop/muldia/muldia/src/shape.s: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
@@ -174,35 +201,8 @@ home/tatsuya/Desktop/muldia/muldia/src/shape.s: home/tatsuya/Desktop/muldia/muld
 
 # target to generate assembly for a file
 home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
+	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
-
-subscript.o: subscript.cpp.o
-
-.PHONY : subscript.o
-
-# target to build an object file
-subscript.cpp.o:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/subscript.cpp.o
-.PHONY : subscript.cpp.o
-
-subscript.i: subscript.cpp.i
-
-.PHONY : subscript.i
-
-# target to preprocess a source file
-subscript.cpp.i:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/subscript.cpp.i
-.PHONY : subscript.cpp.i
-
-subscript.s: subscript.cpp.s
-
-.PHONY : subscript.s
-
-# target to generate assembly for a file
-subscript.cpp.s:
-	$(MAKE) -f CMakeFiles/subscript.dir/build.make CMakeFiles/subscript.dir/subscript.cpp.s
-.PHONY : subscript.cpp.s
 
 # Help Target
 help:
@@ -212,16 +212,16 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... subscript"
+	@echo "... add"
+	@echo "... add.o"
+	@echo "... add.i"
+	@echo "... add.s"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.o"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.i"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.s"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/shape.o"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/shape.i"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/shape.s"
-	@echo "... subscript.o"
-	@echo "... subscript.i"
-	@echo "... subscript.s"
 .PHONY : help
 
 
