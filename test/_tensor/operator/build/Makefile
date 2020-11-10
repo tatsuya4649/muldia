@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named add
+# Target rules for targets named add2
 
 # Build rule for target.
-add: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 add
-.PHONY : add
+add2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 add2
+.PHONY : add2
 
 # fast build rule for target.
-add/fast:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/build
-.PHONY : add/fast
+add2/fast:
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/build
+.PHONY : add2/fast
 
-add.o: add.cpp.o
+add2.o: add2.cpp.o
 
-.PHONY : add.o
+.PHONY : add2.o
 
 # target to build an object file
-add.cpp.o:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/add.cpp.o
-.PHONY : add.cpp.o
+add2.cpp.o:
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/add2.cpp.o
+.PHONY : add2.cpp.o
 
-add.i: add.cpp.i
+add2.i: add2.cpp.i
 
-.PHONY : add.i
+.PHONY : add2.i
 
 # target to preprocess a source file
-add.cpp.i:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/add.cpp.i
-.PHONY : add.cpp.i
+add2.cpp.i:
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/add2.cpp.i
+.PHONY : add2.cpp.i
 
-add.s: add.cpp.s
+add2.s: add2.cpp.s
 
-.PHONY : add.s
+.PHONY : add2.s
 
 # target to generate assembly for a file
-add.cpp.s:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/add.cpp.s
-.PHONY : add.cpp.s
+add2.cpp.s:
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/add2.cpp.s
+.PHONY : add2.cpp.s
 
 home/tatsuya/Desktop/muldia/muldia/src/name.o: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 
@@ -156,7 +156,7 @@ home/tatsuya/Desktop/muldia/muldia/src/name.o: home/tatsuya/Desktop/muldia/muldi
 
 # target to build an object file
 home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o
 
 home/tatsuya/Desktop/muldia/muldia/src/name.i: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
@@ -165,7 +165,7 @@ home/tatsuya/Desktop/muldia/muldia/src/name.i: home/tatsuya/Desktop/muldia/muldi
 
 # target to preprocess a source file
 home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.i
 
 home/tatsuya/Desktop/muldia/muldia/src/name.s: home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
@@ -174,7 +174,7 @@ home/tatsuya/Desktop/muldia/muldia/src/name.s: home/tatsuya/Desktop/muldia/muldi
 
 # target to generate assembly for a file
 home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/name.cpp.s
 
 home/tatsuya/Desktop/muldia/muldia/src/shape.o: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
@@ -183,7 +183,7 @@ home/tatsuya/Desktop/muldia/muldia/src/shape.o: home/tatsuya/Desktop/muldia/muld
 
 # target to build an object file
 home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o
 
 home/tatsuya/Desktop/muldia/muldia/src/shape.i: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
@@ -192,7 +192,7 @@ home/tatsuya/Desktop/muldia/muldia/src/shape.i: home/tatsuya/Desktop/muldia/muld
 
 # target to preprocess a source file
 home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.i
 
 home/tatsuya/Desktop/muldia/muldia/src/shape.s: home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
@@ -201,7 +201,7 @@ home/tatsuya/Desktop/muldia/muldia/src/shape.s: home/tatsuya/Desktop/muldia/muld
 
 # target to generate assembly for a file
 home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
 .PHONY : home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.s
 
 # Help Target
@@ -212,10 +212,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... add"
-	@echo "... add.o"
-	@echo "... add.i"
-	@echo "... add.s"
+	@echo "... add2"
+	@echo "... add2.o"
+	@echo "... add2.i"
+	@echo "... add2.s"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.o"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.i"
 	@echo "... home/tatsuya/Desktop/muldia/muldia/src/name.s"

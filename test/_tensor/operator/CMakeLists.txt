@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.8)
 set(ADD add)
+set(ADD2 add2)
 set(SUBSCRIPT subscript)
-set(NOW ${ADD})
+set(NOW ${ADD2})
 project(${NOW})
 include_directories(../../../muldia/include ../../../muldia/src ../../../muldia/test)
 

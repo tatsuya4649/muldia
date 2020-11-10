@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/tatsuya/Desktop/muldia/test/_tensor/operator/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/add.dir/all
+all: CMakeFiles/add2.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/add.dir/clean
+clean: CMakeFiles/add2.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/add.dir
+# Target rules for target CMakeFiles/add2.dir
 
 # All Build rule for target.
-CMakeFiles/add.dir/all:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/depend
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles --progress-num=1,2,3,4 "Built target add"
-.PHONY : CMakeFiles/add.dir/all
+CMakeFiles/add2.dir/all:
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/depend
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles --progress-num=1,2,3,4 "Built target add2"
+.PHONY : CMakeFiles/add2.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/add.dir/rule: cmake_check_build_system
+CMakeFiles/add2.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/add.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/add2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tatsuya/Desktop/muldia/test/_tensor/operator/build/CMakeFiles 0
-.PHONY : CMakeFiles/add.dir/rule
+.PHONY : CMakeFiles/add2.dir/rule
 
 # Convenience name for target.
-add: CMakeFiles/add.dir/rule
+add2: CMakeFiles/add2.dir/rule
 
-.PHONY : add
+.PHONY : add2
 
 # clean rule for target.
-CMakeFiles/add.dir/clean:
-	$(MAKE) -f CMakeFiles/add.dir/build.make CMakeFiles/add.dir/clean
-.PHONY : CMakeFiles/add.dir/clean
+CMakeFiles/add2.dir/clean:
+	$(MAKE) -f CMakeFiles/add2.dir/build.make CMakeFiles/add2.dir/clean
+.PHONY : CMakeFiles/add2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -2,8 +2,8 @@
 // and versatile tensor tempalte class of muldia.
 //
 //
-#ifndef TENSOR_H
-#define TENSOR_H
+#ifndef TENSOR_TENSOR_H
+#define TENSOR_TENSOR_H
 
 #include <name.h>
 #include <tensor/name.h>
@@ -32,7 +32,7 @@
 #include <tensor/_concept.h>
 #include <tensor/_open.h>
 #include <algorithm>
-
+#include <_tensor/helper/_bro.h>
 
 namespace _md{
 	namespace _ten{
@@ -357,6 +357,44 @@ namespace _md{
 				--*this;
 				return res;
 			}
+			_tensor<T,Allocator>& operator+(const _tensor<T,Allocator>& ten_){
+				if (have_c_tensor()){
+					if (ten_.have_c_tensor()){
+						if (_hel::_autocast<T,Allocator>::need_cast(_c_shp,ten_.c_shp())){
+							_shape ten1_shp{_c_shp};
+							_shape ten2_shp{ten_.c_shp()};
+							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_c_start_ptr,ten2_shp,ten_.c_start_ptr());
+						}
+					}else{
+						if(_hel::_autocast<T,Allocator>::need_cast(_c_shp,ten_.shp())){
+							_shape ten1_shp{_c_shp};
+							_shape ten2_shp{ten_.shp()};
+							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_c_start_ptr,ten2_shp,ten_.ptr());
+						}
+					}
+				}else{
+					if (ten_.have_c_tensor()){
+						if(_hel::_autocast<T,Allocator>::need_cast(_shp,ten_.c_shp())){
+							_shape ten1_shp{_shp};
+							_shape ten2_shp{ten_.c_shp()};
+							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_ptr,ten2_shp,ten_.c_start_ptr());
+						}
+					}else{
+						if(_hel::_autocast<T,Allocator>::need_cast(_shp,ten_.shp())){
+							_shape ten1_shp{_shp};
+							_shape ten2_shp{ten_.shp()};
+							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_ptr,ten2_shp,ten_.ptr());
+						}
+					}
+				}
+				return *this;
+			}
+			_tensor<T,Allocator>& operator-(const _tensor<T,Allocator>& ten_){
+				return *this;
+			}
+			_tensor<T,Allocator>& operator*(const _tensor<T,Allocator>& ten_){
+				return *this;
+			}
 			//---------------------------------------------------
 			//			etc.	
 			//---------------------------------------------------
@@ -476,7 +514,8 @@ namespace _md{
 				return *this;
 			}
 		}; // _tensor
+
 	}; // _ten
 }; // namespace _md
 
-#endif // TENSOR_H
+#endif // TENSOR_TENSOR_H

@@ -85,7 +85,8 @@ namespace _md{
 				return _shp[i];
 			}
 			shp_v operator()() const{ return _shp; }
-			shape_size_t ndim() { return _shape_size; }
+			shp_v& shape() { return _shp; }
+			shape_size_t ndim() const noexcept{ return _shape_size; }
 			std::string str(){
 				std::string res{};
 				res += "(";
@@ -98,6 +99,10 @@ namespace _md{
 				return res;
 			}
 			shape_size_t size() {return std::accumulate(_shp.begin(),_shp.end(),1,[](int init,int v){ return init * v;});}
+			void push_first(shape_t t_){
+				_shp.insert(_shp.begin(),t_);
+				++_shape_size;
+			}
 			void pop_first(){
 				if (_shp.size() == 1 or _shp.size() == 0)
 					throw _md::err::shape_subscript_error{"hello"};

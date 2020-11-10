@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o CMakeFiles/add2.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o CMakeFiles/add2.dir/add2.cpp.o  -o add2 
