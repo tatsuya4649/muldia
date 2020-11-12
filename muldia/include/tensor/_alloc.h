@@ -32,7 +32,7 @@ namespace _md{
 				_tensor_alloc(Allocator a_=Allocator()) : _alloc{a_}{}
 				virtual ~_tensor_alloc(){
 					if (_ptr != nullptr){
-						for(int i=0;i<_len;++i){
+						for(int i=0;i<_len;i++){
 							traits::destroy(_alloc,_ptr+i);
 						}
 						_alloc.deallocate(_ptr,_cap);
@@ -55,10 +55,10 @@ namespace _md{
 
 				virtual void _extension(){
 					pointer ptr = _alloc.allocate(_cap * EXTENSION_RATE);
-					for (int i=0;i<_len;++i){
+					for (int i=0;i<_len;i++){
 						traits::construct(_alloc,ptr+i,*(ptr+i));
 					}
-					for (int i=0;i<_len;++i){
+					for (int i=0;i<_len;i++){
 						traits::destroy(_alloc,_ptr+i);
 					}
 					_alloc.deallocate(_ptr,_cap);
@@ -70,10 +70,10 @@ namespace _md{
 					while(n > _cap * r) r *= EXTENSION_RATE;
 					if (r == 1) return;
 					pointer ptr = _alloc.allocate(_cap*r);
-					for(int i=0;i<_len;++i){
+					for(int i=0;i<_len;i++){
 						traits::construct(_alloc,ptr+i,*(ptr+i));
 					}
-					for(int i=0;i<_len;++i){
+					for(int i=0;i<_len;i++){
 						traits::destroy(_alloc,_ptr+i);
 					}
 					_alloc.deallocate(_ptr,_cap);
@@ -82,6 +82,19 @@ namespace _md{
 				}
 			public:
 				pointer ptr() const noexcept { return _ptr; }
+				/*  
+				 *  receives the index number of the copy destination memory
+				 *  and the index number of the copy source memory,and inserts
+				 *  a new value just before the copy destination index(extension)
+				 */
+				void insert(unsigned int index_,unsigned int copy_index_,unsigned int copy_len_){
+					if (_cap < (_len+copy_len_)) _extension();
+					for(int i=0;i<copy_len_;i++){
+						*(_ptr+index_+copy_len_+i) = *(_ptr+index_+i);
+						*(_ptr+index_+i) = *(_ptr+copy_index_+i);
+					}
+					_len+=copy_len_;
+				}
 		}; // class tensor_alloc
 	} // namespace _ten
 } // namespace _md

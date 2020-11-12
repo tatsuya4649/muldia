@@ -241,6 +241,8 @@ algorithm
 -
 _tensor/helper/_bro.h
 -
+_tensor/helper/_broptr.h
+-
 
 ../../../../muldia/include/tensor/_tenus.h
 name.h
@@ -266,6 +268,22 @@ core/shape.h
 err/shape/autocast.h
 -
 memory
+-
+_tensor/helper/_broptr.h
+-
+tensor/_tensor.h
+-
+
+../../../../muldia/src/_tensor/helper/_broptr.h
+name.h
+-
+tensor/name.h
+-
+_tensor/helper/name.h
+-
+core/shape.h
+-
+numeric
 -
 
 ../../../../muldia/src/_tensor/helper/name.h

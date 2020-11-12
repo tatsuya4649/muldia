@@ -108,6 +108,15 @@ namespace _md{
 					throw _md::err::shape_subscript_error{"hello"};
 				_shp.erase(_shp.begin());
 			}
+			/*
+			 *  what to use when changing the shape.however,it is mainly
+			 *  used when autocasting.
+			 */
+			void reshape(shape_t t_,shape_t ele_){
+				_shp[t_] = ele_;
+				std::cout << ele_ << std::endl;
+				std::cout << t_ << std::endl;
+			}
 
 		private:
 			shp_v 	       _shp;

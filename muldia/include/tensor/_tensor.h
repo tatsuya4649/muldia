@@ -33,11 +33,12 @@
 #include <tensor/_open.h>
 #include <algorithm>
 #include <_tensor/helper/_bro.h>
+#include <_tensor/helper/_broptr.h>
 
 namespace _md{
 	namespace _ten{
 		template<typename T = int,typename Allocator = std::allocator<T>>
-		class _tensor : public _tein,public _tensor_shape, public _tensor_alloc<T,Allocator>,public _tensor_dtype<T>,public _tensor_iter<T,Allocator>,public _tensor_operator,public _tensor_child<T,Allocator>,public _tensor_concept<T>{
+		class _tensor : public _tein,public _tensor_shape, public _tensor_alloc<T,Allocator>,public _tensor_dtype<T>,public _tensor_iter<T,Allocator>,public _tensor_operator,public _tensor_child<T,Allocator>,public _tensor_concept<T>,public _hel::_autocast<_tensor<T,Allocator>>{
 			//
 			// a low-level tensor class shared by all high-level tensor
 			// classes defined in muldia.
@@ -358,34 +359,8 @@ namespace _md{
 				return res;
 			}
 			_tensor<T,Allocator>& operator+(const _tensor<T,Allocator>& ten_){
-				if (have_c_tensor()){
-					if (ten_.have_c_tensor()){
-						if (_hel::_autocast<T,Allocator>::need_cast(_c_shp,ten_.c_shp())){
-							_shape ten1_shp{_c_shp};
-							_shape ten2_shp{ten_.c_shp()};
-							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_c_start_ptr,ten2_shp,ten_.c_start_ptr());
-						}
-					}else{
-						if(_hel::_autocast<T,Allocator>::need_cast(_c_shp,ten_.shp())){
-							_shape ten1_shp{_c_shp};
-							_shape ten2_shp{ten_.shp()};
-							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_c_start_ptr,ten2_shp,ten_.ptr());
-						}
-					}
-				}else{
-					if (ten_.have_c_tensor()){
-						if(_hel::_autocast<T,Allocator>::need_cast(_shp,ten_.c_shp())){
-							_shape ten1_shp{_shp};
-							_shape ten2_shp{ten_.c_shp()};
-							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_ptr,ten2_shp,ten_.c_start_ptr());
-						}
-					}else{
-						if(_hel::_autocast<T,Allocator>::need_cast(_shp,ten_.shp())){
-							_shape ten1_shp{_shp};
-							_shape ten2_shp{ten_.shp()};
-							_hel::_autocast<T,Allocator>::autocast(ten1_shp,_ptr,ten2_shp,ten_.ptr());
-						}
-					}
+				if (_hel::_autocast<_tensor<T,Allocator>>::need_cast_tensor(*this,ten_)){
+					_hel::_autocast<_tensor<T,Allocator>>::autocast(*this,ten_);
 				}
 				return *this;
 			}
@@ -398,6 +373,30 @@ namespace _md{
 			//---------------------------------------------------
 			//			etc.	
 			//---------------------------------------------------
+
+			/*
+			 *  using this function makes a child tensor a real tensor.
+			 */
+			void chl2par(){
+				if (!have_c_tensor()) return;
+				size_type old_cap = _cap;
+				size_type old_len = _cap;
+				pointer old_ptr = _ptr;
+				_cap = 1;
+				while (_cap < c_len())  _cap *= EXTENSION_RATE;
+				_shp = c_shp();
+				_len = c_len();
+				_ptr = _alloc.allocate(_cap);
+				_base = _ptr;
+				for (auto i=0;i<_len;i++){
+					traits::construct(_alloc,_ptr+i,*(c_start_ptr()+i));
+				}
+				for(auto i=0;i<old_len;i++){
+					traits::destroy(_alloc,old_ptr+i);
+				}
+				_alloc.deallocate(old_ptr,old_cap);
+				child_delete();
+			}
 		private:
 			template<typename... Args>
 			void _emplace_back(Args&&... args){
@@ -410,20 +409,20 @@ namespace _md{
 				if (have_c_tensor()){
 					if (ten_.have_c_tensor()){
 						if (_c_shp != ten_.c_shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
-						for (auto i=0;i<_c_shp_size();++i){
+						for (auto i=0;i<_c_shp_size();i++){
 							*(_c_start_ptr + i) = *(ten_.c_start_ptr() + i);
 						}
 						ten_.child_delete();
 					}else{
 						if (_c_shp != ten_.shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s tensor's shape (ten_.c_shp) must have same shape."};}
-						for (auto i=0;i<_c_shp_size();++i){
+						for (auto i=0;i<_c_shp_size();i++){
 							*(_c_start_ptr + i) = *(ten_.ptr() + i);
 						}
 					}
 					child_delete();
 				}else{
 					if (ten_.have_c_tensor()){
-						if (_shp != ten_.c_shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
+						if (_shp.size()!=0 and _shp != ten_.c_shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
 						for(auto i=0;i<_len;++i){
 							traits::destroy(_alloc,_ptr+i);
 						}
@@ -436,13 +435,13 @@ namespace _md{
 						d_type = ten_.d_type;
 						_ptr = _alloc.allocate(_cap);
 						_base = _ptr;
-						for(auto i=0;i<_len;++i){
+						for(auto i=0;i<_len;i++){
 							traits::construct(_alloc,_ptr+i,*(ten_.c_start_ptr()+i));
 						}
 						ten_.child_delete();
 					}else{
-						if (_shp != ten_._shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
-						for(auto i=0;i<_len;++i){
+						if (_shp.size()!=0 and _shp != ten_._shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
+						for(auto i=0;i<_len;i++){
 							traits::destroy(_alloc,_ptr+i);
 						}
 						_alloc.deallocate(_ptr,_cap);
@@ -454,7 +453,7 @@ namespace _md{
 						d_type = ten_.d_type;
 						_ptr = _alloc.allocate(_cap);
 						_base = _ptr;
-						for(auto i=0;i<_len;++i){
+						for(auto i=0;i<_len;i++){
 							traits::construct(_alloc,_ptr+i,*(ten_._ptr+i));
 						}
 					}
@@ -465,22 +464,22 @@ namespace _md{
 				if (have_c_tensor()){
 					if (ten_.have_c_tensor()){
 						if (_c_shp != ten_.c_shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
-						for (auto i=0;i<_c_shp_size();++i){
+						for (auto i=0;i<_c_shp_size();i++){
 							*(_c_start_ptr+i) = *(ten_.c_start_ptr()+i);
 						}
 						ten_.child_delete();
 					}else{
 						if (_c_shp != ten_.shp()){throw err::shape_shape_error{"child tensor's shape (_c_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
-						for (auto i=0;i<_c_shp_size();++i){
+						for (auto i=0;i<_c_shp_size();i++){
 							*(_c_start_ptr+i) = *(ten_.ptr()+i);
 						}
 					}
-					ten_.ptr = nullptr;
+					ten_._ptr = nullptr;
 					child_delete();
 				}else{
 					if (ten_.have_c_tensor()){
 						if (_shp != ten_.c_shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s child tensor's shape (ten_.c_shp) must have same shape."};}
-						for(auto i=0;i<_len;++i){
+						for(auto i=0;i<_len;i++){
 							traits::destroy(_alloc,_ptr+i);
 						}
 						_alloc.deallocate(_ptr,_cap);
@@ -495,7 +494,7 @@ namespace _md{
 						ten_.child_delete();
 					}else{
 						if (_shp != ten_._shp()){throw err::shape_shape_error{"tensor's shape (_shp) and ten_'s tensor's shape (ten_._shp) must have same shape."};}
-						for(auto i=0;i<_len;++i){
+						for(auto i=0;i<_len;i++){
 							traits::destroy(_alloc,_ptr+i);
 						}
 						_alloc.deallocate(_ptr,_cap);

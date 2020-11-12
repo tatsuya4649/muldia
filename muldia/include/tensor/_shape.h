@@ -64,6 +64,7 @@ namespace _md{
 				virtual shp_v        shape() = 0;
 			public:
 				_shape shp() const noexcept { return _shp; } 
+				_shape& reshp() noexcept { return _shp; } 
 		};
 	} // namespace _ten
 } // namespace _md
