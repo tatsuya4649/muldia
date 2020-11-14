@@ -25,7 +25,10 @@ CMakeFiles/add2.dir/add2.cpp.o
  ../../../../muldia/include/tensor/name.h
  ../../../../muldia/src/_tensor/helper/_bro.h
  ../../../../muldia/src/_tensor/helper/_broptr.h
+ ../../../../muldia/src/_tensor/helper/_op.h
  ../../../../muldia/src/_tensor/helper/name.h
+ ../../../../muldia/src/err/_tensor/autocast.h
+ ../../../../muldia/src/err/_tensor/operation.h
  ../../../../muldia/src/err/child/have.h
  ../../../../muldia/src/err/name.h
  ../../../../muldia/src/err/shape/autocast.h

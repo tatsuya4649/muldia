@@ -7,11 +7,13 @@
 #ifndef HELPER_BRO_H
 #define HELPER_BRO_H
 
+#include <utility>
 #include <name.h>
 #include <tensor/name.h>
 #include <_tensor/helper/name.h>
 #include <core/shape.h>
 #include <err/shape/autocast.h>
+#include <err/_tensor/autocast.h>
 #include <memory>
 #include <_tensor/helper/_broptr.h>
 #include <tensor/_tensor.h>
@@ -117,23 +119,24 @@ namespace _md{
 					}
 				}
 				/* if autocast is needed, do the actual conversion */
-				static T autocast(const T& t1_,const T& t2_){
+				static std::pair<T,T> autocast(const T& t1_,const T& t2_){
 					_shape small_shp;
 					_shape big_shp;
 					T tensor;
+					T tensor_big;
 					std::cout << t1_.shp().ndim() << std::endl;
 					if (t1_.shp().ndim() == t2_.shp().ndim()){
 						t1_.shp().size() < t2_.shp().size() ? 
 							(small_shp=t1_.shp(),big_shp=t2_.shp(),
-							 tensor = t1_) : 
+							 tensor = t1_,tensor_big = t2_) : 
 							(big_shp=t1_.shp(),small_shp=t2_.shp(),
-							 tensor = t2_);
+							 tensor = t2_,tensor_big = t1_);
 					}else{
 						t1_.shp().ndim() < t2_.shp().ndim() ? 
 							(small_shp=t1_.shp(),big_shp=t2_.shp(),
-							 tensor = t1_) : 
+							 tensor = t1_,tensor_big = t2_) : 
 							(big_shp=t1_.shp(),small_shp=t2_.shp(),
-							 tensor = t2_);
+							 tensor = t2_,tensor_big = t1_);
 					}
 					
 					/*		step1		*/
@@ -178,7 +181,8 @@ namespace _md{
 							//}
 						}
 					}
-					return tensor;
+					//return tensor;
+					return std::pair<T,T>{tensor,tensor_big};
 				}
 				/* expand by the required number of iterations of small tensor */
 				static void expand_small(T& ten_,unsigned int index_,unsigned int count_){
@@ -211,13 +215,12 @@ namespace _md{
 							// separate processing depending on whether or
 							// not ten_ has a child tensor.
 							if(ten_.have_c_tensor()){
-							}else{
-								unsigned int start_index =
-							start_pre_index+(i*number_ele_now);
-								ten_.insert(start_index,start_pre_index,number_ele_now);
-								//for(unsigned int j=0;j<number_ele_now;j++){
-								//}	
+								throw _err::_tensor_autocast_error{"when tensor is autocasted, tensor have to not have child tensor."};
 							}
+							unsigned int start_index =
+							start_pre_index+(i*number_ele_now);
+							ten_.insert(start_index,start_pre_index
+									,number_ele_now);
 						}
 					}
 					if (ten_.have_c_tensor()){

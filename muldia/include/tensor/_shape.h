@@ -57,11 +57,11 @@ namespace _md{
 				// (pure virtual function)
 				// =============================
 				// size() to get number of tensor element.
-				virtual shape_size_t size()  = 0;
+				virtual shape_size_t size() const = 0;
 				// ndim() to get number of tensor dimension.
-				virtual shape_size_t ndim()  = 0;
+				virtual shape_size_t ndim() const = 0;
 				// shape() to get vector of tensor shape.
-				virtual shp_v        shape() = 0;
+				virtual shp_v        shape() const = 0;
 			public:
 				_shape shp() const noexcept { return _shp; } 
 				_shape& reshp() noexcept { return _shp; } 

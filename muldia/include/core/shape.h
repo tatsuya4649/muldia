@@ -98,7 +98,7 @@ namespace _md{
 				res += ")";
 				return res;
 			}
-			shape_size_t size() {return std::accumulate(_shp.begin(),_shp.end(),1,[](int init,int v){ return init * v;});}
+			shape_size_t size() const{return std::accumulate(_shp.begin(),_shp.end(),1,[](int init,int v){ return init * v;});}
 			void push_first(shape_t t_){
 				_shp.insert(_shp.begin(),t_);
 				++_shape_size;

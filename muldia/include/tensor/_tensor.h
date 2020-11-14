@@ -29,11 +29,13 @@
 #include <tensor/_op.h>
 #include <tensor/_c.h>
 #include <err/shape/shape.h>
+#include <err/_tensor/operation.h>
 #include <tensor/_concept.h>
 #include <tensor/_open.h>
 #include <algorithm>
 #include <_tensor/helper/_bro.h>
 #include <_tensor/helper/_broptr.h>
+#include <_tensor/helper/_op.h>
 
 namespace _md{
 	namespace _ten{
@@ -209,9 +211,9 @@ namespace _md{
 			// --------------------------------------------------
 			//			shape
 			// --------------------------------------------------
-			shape_size_t size()  override{ return _shp.size(); }
-			shape_size_t ndim()  override{ return _shp.ndim(); }
-			shp_v	     shape() override{ return _shp();	     }
+			shape_size_t size()  const override{ return _shp.size(); }
+			shape_size_t ndim()  const override{ return _shp.ndim(); }
+			shp_v	     shape() const override{ return _shp();	 }
 			using _tensor_shape::shp_subsc;
 			using _tensor_shape::shp;
 			// --------------------------------------------------
@@ -358,16 +360,17 @@ namespace _md{
 				--*this;
 				return res;
 			}
+			using ten_pair = std::pair<_tensor<T,Allocator>,_tensor<T,Allocator>>;
 			_tensor<T,Allocator>& operator+(const _tensor<T,Allocator>& ten_){
-				if (_hel::_autocast<_tensor<T,Allocator>>::need_cast_tensor(*this,ten_)){
-					_hel::_autocast<_tensor<T,Allocator>>::autocast(*this,ten_);
-				}
+				ten_pair pair = _hel::autocheck(*this,ten_);
 				return *this;
 			}
 			_tensor<T,Allocator>& operator-(const _tensor<T,Allocator>& ten_){
+				ten_pair pair = _hel::autocheck(*this,ten_);
 				return *this;
 			}
 			_tensor<T,Allocator>& operator*(const _tensor<T,Allocator>& ten_){
+				ten_pair pair = _hel::autocheck(*this,ten_);
 				return *this;
 			}
 			//---------------------------------------------------

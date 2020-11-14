@@ -233,6 +233,8 @@ tensor/_c.h
 -
 err/shape/shape.h
 -
+err/_tensor/operation.h
+-
 tensor/_concept.h
 -
 tensor/_open.h
@@ -242,6 +244,8 @@ algorithm
 _tensor/helper/_bro.h
 -
 _tensor/helper/_broptr.h
+-
+_tensor/helper/_op.h
 -
 
 ../../../../muldia/include/tensor/_tenus.h
@@ -257,6 +261,8 @@ string
 -
 
 ../../../../muldia/src/_tensor/helper/_bro.h
+utility
+-
 name.h
 -
 tensor/name.h
@@ -266,6 +272,8 @@ _tensor/helper/name.h
 core/shape.h
 -
 err/shape/autocast.h
+-
+err/_tensor/autocast.h
 -
 memory
 -
@@ -286,7 +294,37 @@ core/shape.h
 numeric
 -
 
+../../../../muldia/src/_tensor/helper/_op.h
+name.h
+-
+tensor/name.h
+-
+_tensor/helper/name.h
+-
+utility
+-
+err/_tensor/operation.h
+-
+_tensor/helper/_bro.h
+-
+
 ../../../../muldia/src/_tensor/helper/name.h
+
+../../../../muldia/src/err/_tensor/autocast.h
+name.h
+-
+err/name.h
+-
+string
+-
+
+../../../../muldia/src/err/_tensor/operation.h
+name.h
+-
+err/name.h
+-
+string
+-
 
 ../../../../muldia/src/err/child/have.h
 name.h
