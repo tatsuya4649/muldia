@@ -82,6 +82,10 @@ namespace _md{
 				_ptr = nullptr;
 				_base = nullptr;
 			}
+			template<typename U>
+			_tensor(std::initializer_list<U>) = delete;
+			template<typename U>
+			_tensor& operator=(std::initializer_list<U>) = delete;
 			_tensor(std::vector<T> t_) {
 				// the values stored in std::vector<T> are stored
 				// in memory in order from the _ptr pointer.

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/inheri.dir/home/tatsuya/Desktop/muldia/muldia/src/name.cpp.o CMakeFiles/inheri.dir/home/tatsuya/Desktop/muldia/muldia/src/shape.cpp.o CMakeFiles/inheri.dir/inheri.cpp.o  -o inheri 
