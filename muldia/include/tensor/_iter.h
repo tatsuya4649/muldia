@@ -104,7 +104,7 @@ namespace _md{
 			using traits = std::allocator_traits<Allocator>;
 			using difference_type = int;
 			using value_type = T;
-			using reference = T&;
+			using reference = const T&;
 			using pointer = typename traits::pointer; 
 			using iterator_category = std::random_access_iterator_tag;
 			private:
@@ -140,6 +140,9 @@ namespace _md{
 			}
 			_const_iterator operator-(const difference_type& x_) const{
 				return _const_iterator(*this) -= x_;
+			}
+			difference_type operator-(const _const_iterator& i_) const{
+				return _p - i_._p;
 			}
 			_const_iterator& operator-=(const difference_type& x_) const{
 				_p -= x_;

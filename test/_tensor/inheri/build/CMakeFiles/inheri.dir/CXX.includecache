@@ -64,6 +64,24 @@ err/child/have.h
 name.h
 -
 
+../../../../muldia/include/tensor/_child.h
+name.h
+-
+tensor/name.h
+-
+tensor/_tensor.h
+-
+tensor/_tenus.h
+-
+tensor/_parent.h
+-
+algorithm
+-
+
+../../../../muldia/include/tensor/_child_impl.h
+_child.h
+../../../../muldia/include/tensor/_child.h
+
 ../../../../muldia/include/tensor/_concept.h
 name.h
 -
@@ -104,6 +122,14 @@ numeric
 memory
 -
 type_traits
+-
+
+../../../../muldia/include/tensor/_init.h
+name.h
+-
+tensor/name.h
+-
+initializer_list
 -
 
 ../../../../muldia/include/tensor/_inst.h
@@ -147,6 +173,14 @@ tensor/name.h
 -
 tensor/_tensor.h
 -
+type_traits
+-
+tensor/_child_impl.h
+-
+
+../../../../muldia/include/tensor/_parent_impl.h
+_parent.h
+../../../../muldia/include/tensor/_parent.h
 
 ../../../../muldia/include/tensor/_shape.h
 name.h
@@ -248,6 +282,8 @@ _tensor/helper/_bro.h
 _tensor/helper/_broptr.h
 -
 _tensor/helper/_op.h
+-
+tensor/_init.h
 -
 
 ../../../../muldia/include/tensor/_tenus.h
@@ -369,6 +405,6 @@ string
 -
 
 /home/tatsuya/Desktop/muldia/test/_tensor/inheri/inheri.cpp
-tensor/_parent.h
+tensor/_parent_impl.h
 -
 

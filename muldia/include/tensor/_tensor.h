@@ -36,11 +36,22 @@
 #include <_tensor/helper/_bro.h>
 #include <_tensor/helper/_broptr.h>
 #include <_tensor/helper/_op.h>
+#include <tensor/_init.h>
 
 namespace _md{
 	namespace _ten{
 		template<typename T = int,typename Allocator = std::allocator<T>>
-		class _tensor : public _tein,public _tensor_shape, public _tensor_alloc<T,Allocator>,public _tensor_dtype<T>,public _tensor_iter<T,Allocator>,public _tensor_operator,public _tensor_child<T,Allocator>,public _tensor_concept<T>,public _hel::_autocast<_tensor<T,Allocator>>{
+		class _tensor : public _tein,
+				public _tensor_shape,
+				public _tensor_alloc<T,Allocator>,
+				public _tensor_dtype<T>,
+				public _iterator<T,Allocator>,
+				public _const_iterator<T,Allocaotr>,
+				public _tensor_operator,
+				//public _tensor_child<T,Allocator>,
+				public _tensor_concept<T>,
+				public _hel::_autocast<_tensor<T,Allocator>>,
+				public _tensor_iter<_tensor<T,Allocator>>{
 			//
 			// a low-level tensor class shared by all high-level tensor
 			// classes defined in muldia.
@@ -58,7 +69,7 @@ namespace _md{
 			// * _dtype<T> d_type => tensor type information
 			// * (private) pointer _c_start_ptr => pointer to child tensor start pointer
 			// * (private) _shape _c_shp => the shape of _tensor for child tensor
-		private:
+		protected:
 			using _tensor_alloc<T,Allocator>::_len;
 			using _tensor_alloc<T,Allocator>::_cap;
 			using _tensor_alloc<T,Allocator>::_alloc;
@@ -80,12 +91,12 @@ namespace _md{
 			_tensor(){
 				_shp = shp_v{0};
 				_ptr = nullptr;
-				_base = nullptr;
+				//_base = nullptr;
 			}
-			template<typename U>
-			_tensor(std::initializer_list<U>) = delete;
-			template<typename U>
-			_tensor& operator=(std::initializer_list<U>) = delete;
+			//template<typename U>
+			//_tensor(std::initializer_list<U>) = delete;
+			//template<typename U>
+			//_tensor& operator=(std::initializer_list<U>) = delete;
 			_tensor(std::vector<T> t_) {
 				// the values stored in std::vector<T> are stored
 				// in memory in order from the _ptr pointer.
@@ -94,12 +105,12 @@ namespace _md{
 				size_t n = t_.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
 				this->_ptr = _alloc.allocate(_cap);
-				this->_base = this->_ptr;
-				for (int i=0;i<n;++i){
+				//this->_base = this->_ptr;
+				for (int i=0;i<n;i++){
 					_emplace_back(t_[i]);
 				}
 			}
-			_tensor(std::initializer_list<T> l_){
+			_tensor(typename tensor_init_list<T>::type l_){
 				// the values stored in std::initializer_list<T> are stored
 				// in memory in order from the _ptr pointer.
 				// note: do not consider the shape.
@@ -107,8 +118,8 @@ namespace _md{
 				size_t n = l_.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
 				_ptr = _alloc.allocate(_cap);
-				this->_base = this->_ptr;
-				for (int i=0;i<n;++i){
+				//this->_base = this->_ptr;
+				for (int i=0;i<n;i++){
 					_emplace_back( *(l_.begin() + i) );
 				}
 			}
@@ -133,9 +144,21 @@ namespace _md{
 				size_t n = _shp.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
 				_ptr = _alloc.allocate(_cap);
-				this->_base = this->_ptr;
-				for (int i=0;i<n;++i){
+				//this->_base = this->_ptr;
+				for (int i=0;i<n;i++){
 					_emplace_back( *(ele_p + i) );
+				}
+			}
+			template<typename... Shape>
+			_tensor(Shape... shape_){
+				_shp = {static_cast<shape_size_t>(shape_)...};
+				std::cout << _shp << std::endl;
+				size_t n = _shp.size();
+				while(_cap < n) _cap *= EXTENSION_RATE;
+				_ptr = _alloc.allocate(_cap);
+				//this->_base = this->_ptr;
+				for(int i=0;i<n;i++){
+					_emplace_back(0);
 				}
 			}
 			_tensor(shp_v l_,T value=0){
@@ -146,8 +169,8 @@ namespace _md{
 				size_t n = _shp.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
 				_ptr = _alloc.allocate(_cap);
-				this->_base = this->_ptr;
-				for (int i=0;i<n;++i){
+				//this->_base = this->_ptr;
+				for (int i=0;i<n;i++){
 					_emplace_back( value );
 				}
 			}
@@ -156,60 +179,74 @@ namespace _md{
 				size_t n = shape_.size();
 				while(_cap < n) _cap *= EXTENSION_RATE;
 				_ptr = _alloc.allocate(_cap);
-				this->_base = p_;
-				for(int i=0;i<n;++i){
+				//this->_base = p_;
+				for(int i=0;i<n;i++){
 					_emplace_back( *(p_+i) );
 				}
 			}
 			_tensor(const _tensor& ten_){
-				if (ten_.have_c_tensor()){
-					size_t n = ten_.c_len();
-					while(_cap < n) _cap *= EXTENSION_RATE;
-					_shp = ten_.c_shp();
-					_len = ten_.c_len();
-					_ilen = ten_.c_len();
-					d_type = ten_.d_type;
-					_ptr = _alloc.allocate(_cap);
-					this->_base = _ptr;
-					for(int i=0;i<_len;++i){
-						traits::construct(_alloc,_ptr+i,*(ten_.c_start_ptr()+i));
-					}
-					ten_.child_delete();
-				}else{
-					while(_cap < ten_._len) _cap *= EXTENSION_RATE;
-					_shp = ten_._shp;
-					_len = ten_._len;
-					_ilen = ten_._ilen;
-					d_type = ten_.d_type;
-					_ptr = _alloc.allocate(_cap);
-					this->_base = _ptr;
-					for(int i=0;i<_len;++i){
-						traits::construct(_alloc,_ptr+i,*(ten_._ptr+i));
-					}
+				while(_cap < ten_._len) _cap *= EXTENSION_RATE;
+				_shp = ten_._shp;
+				_len = ten_._len;
+				d_type = ten_.d_type;
+				_ptr = _alloc.allocate(_cap);
+				for(int i=0;i<_len;i++){
+					traits::construct(_alloc,_ptr+i,*(ten_._ptr+i));
 				}
+//				if (ten_.have_c_tensor()){
+//					size_t n = ten_.c_len();
+//					while(_cap < n) _cap *= EXTENSION_RATE;
+//					_shp = ten_.c_shp();
+//					_len = ten_.c_len();
+//					//_ilen = ten_.c_len();
+//					d_type = ten_.d_type;
+//					_ptr = _alloc.allocate(_cap);
+//					//this->_base = _ptr;
+//					for(int i=0;i<_len;i++){
+//						traits::construct(_alloc,_ptr+i,*(ten_.c_start_ptr()+i));
+//					}
+//					ten_.child_delete();
+//				}else{
+//					while(_cap < ten_._len) _cap *= EXTENSION_RATE;
+//					_shp = ten_._shp;
+//					_len = ten_._len;
+//					//_ilen = ten_._ilen;
+//					d_type = ten_.d_type;
+//					_ptr = _alloc.allocate(_cap);
+//					//this->_base = _ptr;
+//					for(int i=0;i<_len;i++){
+//						traits::construct(_alloc,_ptr+i,*(ten_._ptr+i));
+//					}
+//				}
 			}
 			_tensor(_tensor&& ten_){
-				if (ten_.have_c_tensor()){
-					size_t n = ten_.c_len();
-					while(_cap < n) _cap *= EXTENSION_RATE;
-					_shp = ten_.c_shp();
-					_len = ten_.c_len();
-					_ilen = _len;
-					d_type = ten_.d_type;
-					_ptr = ten_.c_start_ptr();
-					this->_base = _ptr;
-					ten_._ptr = nullptr;
-					ten_.child_delete();
-				}else{
-					_cap = ten_._cap;
-					_shp = ten_._shp;
-					_len = ten_._len;
-					_ilen = ten_._ilen;
-					d_type = ten_.d_type;
-					_ptr = ten_._ptr;
-					this->_base = ten_._base;
-					ten_._ptr = nullptr;
-				}
+				_cap = ten_._cap;
+				_shp = ten_._shp;
+				_len = ten_._len;
+				d_type = ten_.d_type;
+				_ptr = ten_._ptr;
+				ten_._ptr = nullptr;
+//				if (ten_.have_c_tensor()){
+//					size_t n = ten_.c_len();
+//					while(_cap < n) _cap *= EXTENSION_RATE;
+//					_shp = ten_.c_shp();
+//					_len = ten_.c_len();
+//					//_ilen = _len;
+//					d_type = ten_.d_type;
+//					_ptr = ten_.c_start_ptr();
+//					//this->_base = _ptr;
+//					ten_._ptr = nullptr;
+//					//ten_.child_delete();
+//				}else{
+//					_cap = ten_._cap;
+//					_shp = ten_._shp;
+//					_len = ten_._len;
+//					//_ilen = ten_._ilen;
+//					d_type = ten_.d_type;
+//					_ptr = ten_._ptr;
+//					//this->_base = ten_._base;
+//					ten_._ptr = nullptr;
+//				}
 			}
 			~_tensor()override{}
 			// --------------------------------------------------
@@ -243,53 +280,66 @@ namespace _md{
 			void info() override{
 				std::cout << '\n';
 				std::cout << "+---------------info---------------+" << '\n';
-				if (_c_start_ptr == nullptr){
-					std::cout << " number of element => " << size() << '\n';
-					std::cout << " tensor shape => " << shape() << '\n';
-					std::cout << " memory consumption size => " << mem_size() * sizeof(char) << " bytes" << '\n';
-					std::cout << " memory length => " << len() * sizeof(char) << "bytes" << '\n';
-					std::cout << " capacity size => " << cap() * sizeof(char) << "bytes" << '\n';
-				}else{
-					std::cout << " number of element => " << _c_shp.size() << '\n';
-					std::cout << " tensor shape => " << _c_shp() << '\n';
-					std::cout << " memory length => " << _c_shp.size() * sizeof(char) << "bytes" << '\n';
-				}
+				std::cout << " number of element => " << size() << '\n';
+				std::cout << " tensor shape => " << shape() << '\n';
+				std::cout << " memory consumption size => " << mem_size() * sizeof(char) << " bytes" << '\n';
+				std::cout << " memory length => " << len() * sizeof(char) << "bytes" << '\n';
+				std::cout << " capacity size => " << cap() * sizeof(char) << "bytes" << '\n';
+//				if (_c_start_ptr == nullptr){
+//					std::cout << " number of element => " << size() << '\n';
+//					std::cout << " tensor shape => " << shape() << '\n';
+//					std::cout << " memory consumption size => " << mem_size() * sizeof(char) << " bytes" << '\n';
+//					std::cout << " memory length => " << len() * sizeof(char) << "bytes" << '\n';
+//					std::cout << " capacity size => " << cap() * sizeof(char) << "bytes" << '\n';
+//				}else{
+//					std::cout << " number of element => " << _c_shp.size() << '\n';
+//					std::cout << " tensor shape => " << _c_shp() << '\n';
+//					std::cout << " memory length => " << _c_shp.size() * sizeof(char) << "bytes" << '\n';
+//				}
 				std::cout << " tensor element type => " << d_type << '\n';
 				std::cout << "+----------------------------------+" << '\n';
 				std::cout << "=============== value ==============" << '\n';
-				unsigned int n = (_c_start_ptr==nullptr?_len:c_len());
-				for (unsigned int i=0;i<n;++i){
-					if (_c_start_ptr == nullptr)
-						std::cout << *(_ptr+i);
-					else
-						std::cout << *(_c_start_ptr+i);
-					if (i!=(n-1)){
-						std::cout << " ,"; 
-					}else{
+				for (unsigned int i=0;i<_len;i++){
+					std::cout << *(_ptr+i);
+					if(i!=(n-1)){
+						std::cout << " ,";
+					else{
 						std::cout << '\n';
 					}
 				}
+//				unsigned int n = (_c_start_ptr==nullptr?_len:c_len());
+//				for (unsigned int i=0;i<n;++i){
+//					if (_c_start_ptr == nullptr)
+//						std::cout << *(_ptr+i);
+//					else
+//						std::cout << *(_c_start_ptr+i);
+//					if (i!=(n-1)){
+//						std::cout << " ,"; 
+//					}else{
+//						std::cout << '\n';
+//					}
+//				}
 				std::cout << "====================================" << '\n'; 
 				std::cout << '\n';
-				child_delete();
+				//child_delete();
 			}
 			//---------------------------------------------------
 			//			iterator
 			//---------------------------------------------------
-			using _tensor_iter<T,Allocator>::_base;
-			using _tensor_iter<T,Allocator>::_ilen;
+//			using _tensor_iter<T,Allocator>::_base;
+//			using _tensor_iter<T,Allocator>::_ilen;
 			//---------------------------------------------------
 			//			child	
 			//---------------------------------------------------
-			using _tensor_child<T,Allocator>::_c_start_ptr;
-			using _tensor_child<T,Allocator>::_c_shp;
-			using _tensor_child<T,Allocator>::_c_len;
-			using _tensor_child<T,Allocator>::child_delete;
-			using _tensor_child<T,Allocator>::have_c_tensor;
-			using _tensor_child<T,Allocator>::_c_shp_size;
-			using _tensor_child<T,Allocator>::c_start_ptr;
-			using _tensor_child<T,Allocator>::c_len;
-			using _tensor_child<T,Allocator>::c_shp;
+//			using _tensor_child<T,Allocator>::_c_start_ptr;
+//			using _tensor_child<T,Allocator>::_c_shp;
+//			using _tensor_child<T,Allocator>::_c_len;
+//			using _tensor_child<T,Allocator>::child_delete;
+//			using _tensor_child<T,Allocator>::have_c_tensor;
+//			using _tensor_child<T,Allocator>::_c_shp_size;
+//			using _tensor_child<T,Allocator>::c_start_ptr;
+//			using _tensor_child<T,Allocator>::c_len;
+//			using _tensor_child<T,Allocator>::c_shp;
 			//---------------------------------------------------
 			//			operator
 			//---------------------------------------------------
@@ -303,22 +353,22 @@ namespace _md{
 			_tensor<T,Allocator>& operator=(_tensor<T,Allocator>&& ten_){
 				return swap(std::move(ten_));
 			}
-			_tensor<T,Allocator>& operator[](subsc_t sb_) & override{
-				if (have_c_tensor()){
-					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,c_shp()(),c_start_ptr());
-					_shape _subsc_shp = shp_subsc(c_shp(),sb_);
-					_c_start_ptr = _subsc_ptr;	// child tensor start pointer
-					_c_shp = _subsc_shp;		// child tensor shape
-					_c_len = _subsc_shp.size();	// child tensor length
-				}else{
-					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,_shp(),_ptr);
-					_shape _subsc_shp = shp_subsc(sb_);
-					_c_start_ptr = _subsc_ptr;	// child tensor start pointer
-					_c_shp = _subsc_shp;		// child tensor shape
-					_c_len = _subsc_shp.size();	// child tensor length
-				}
-				return *this;
-			}
+//			_tensor<T,Allocator>& operator[](subsc_t sb_) & override{
+//				if (have_c_tensor()){
+//					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,c_shp()(),c_start_ptr());
+//					_shape _subsc_shp = shp_subsc(c_shp(),sb_);
+//					_c_start_ptr = _subsc_ptr;	// child tensor start pointer
+//					_c_shp = _subsc_shp;		// child tensor shape
+//					_c_len = _subsc_shp.size();	// child tensor length
+//				}else{
+//					pointer _subsc_ptr = nest_scratch<T,Allocator>(sb_,_shp(),_ptr);
+//					_shape _subsc_shp = shp_subsc(sb_);
+//					_c_start_ptr = _subsc_ptr;	// child tensor start pointer
+//					_c_shp = _subsc_shp;		// child tensor shape
+//					_c_len = _subsc_shp.size();	// child tensor length
+//				}
+//				return *this;
+//			}
 			void _have_ptr(){
 				if (_ptr == nullptr) std::cout << "error" << std::endl;
 			}

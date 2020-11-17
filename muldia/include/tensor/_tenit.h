@@ -16,41 +16,37 @@
 
 namespace _md{
 	namespace _ten{
-		template <typename T,typename Allocator = std::allocator<T>>
-		class _tensor_iter : public _iterator<T,Allocator>,public _const_iterator<T,Allocator>{
+		template <typename I>
+		class _tensor_iter{
 			protected:
-				using traits = std::allocator_traits<Allocator>;
-				using difference_type = int;
-				using value_type = T;
-				using reference = T&;
-				using pointer = typename traits::pointer;
-				using size_type = typename Allocator::size_type;
+//				using traits = std::allocator_traits<Allocator>;
+//				using difference_type = int;
+//				using value_type = T;
+//				using reference = T&;
+//				using pointer = typename traits::pointer;
+//				using size_type = typename Allocator::size_type;
 				using iterator = _iterator<T,Allocator>;
 				using const_iterator = _const_iterator<T,Allocator>;
 				using iterator_type = typename _iterator<T,Allocator>::value_type;
 				using const_iterator_type = typename _const_iterator<T,Allocator>::value_type;
-				static_assert(std::is_same<T,iterator_type>::value,"_tensor_iter pointer and _iterator::pointer must have same type.");
-				static_assert(std::is_same<T,const_iterator_type>::value,"_tensor_iter pointer and _const_iterator::pointer must have same type.");
-				pointer _base;
-				size_type _ilen = 0;
 			public:
 				virtual iterator begin() noexcept{
-					return iterator(_base,0);
+					return iterator(_ptr,0);
 				}
 				virtual const_iterator begin() const noexcept{
-					return const_iterator(_base,0);
+					return const_iterator(_ptr,0);
 				}
 				virtual const_iterator cbegin() const noexcept{
-					return const_iterator(_base,0);
+					return const_iterator(_ptr,0);
 				}
 				virtual iterator end() noexcept{
-					return iterator(_base,_ilen);
+					return iterator(_ptr,_len);
 				}
 				virtual const_iterator end() const noexcept{
-					return const_iterator(_base,_ilen);
+					return const_iterator(_ptr,_len);
 				}
 				virtual const_iterator cend() const noexcept{
-					return const_iterator(_base,_ilen);
+					return const_iterator(_ptr,_len);
 				}
 		}; // class _tensor_iter
 	} // namespace _ten

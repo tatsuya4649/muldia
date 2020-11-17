@@ -17,15 +17,19 @@ CMakeFiles/inheri.dir/inheri.cpp.o
  ../../../../muldia/include/tensor/_alloc.h
  ../../../../muldia/include/tensor/_c.h
  ../../../../muldia/include/tensor/_c_ctn.h
+ ../../../../muldia/include/tensor/_child.h
+ ../../../../muldia/include/tensor/_child_impl.h
  ../../../../muldia/include/tensor/_concept.h
  ../../../../muldia/include/tensor/_ctn.h
  ../../../../muldia/include/tensor/_dty.h
  ../../../../muldia/include/tensor/_inest.h
+ ../../../../muldia/include/tensor/_init.h
  ../../../../muldia/include/tensor/_inst.h
  ../../../../muldia/include/tensor/_iter.h
  ../../../../muldia/include/tensor/_op.h
  ../../../../muldia/include/tensor/_open.h
  ../../../../muldia/include/tensor/_parent.h
+ ../../../../muldia/include/tensor/_parent_impl.h
  ../../../../muldia/include/tensor/_shape.h
  ../../../../muldia/include/tensor/_tein.h
  ../../../../muldia/include/tensor/_tenit.h
