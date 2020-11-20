@@ -9,6 +9,7 @@
 
 #include <name.h>
 #include <tensor/name.h>
+#include <tensor/_tensor.h>
 #include <memory>
 #include <tensor/_iter.h>
 #include <type_traits>
@@ -16,7 +17,7 @@
 
 namespace _md{
 	namespace _ten{
-		template <typename I>
+		template <typename T,typename Allocator>
 		class _tensor_iter{
 			protected:
 //				using traits = std::allocator_traits<Allocator>;
@@ -25,29 +26,21 @@ namespace _md{
 //				using reference = T&;
 //				using pointer = typename traits::pointer;
 //				using size_type = typename Allocator::size_type;
+//				using iterator = I::_iterator<T,Allocator>;
+//				using const_iterator = I::_const_iterator<T,Allocator>;
+//				using iterator_type = typename _iterator<T,Allocator>::value_type;
+//				using const_iterator_type = typename _const_iterator<T,Allocator>::value_type;
+//				
+
 				using iterator = _iterator<T,Allocator>;
 				using const_iterator = _const_iterator<T,Allocator>;
-				using iterator_type = typename _iterator<T,Allocator>::value_type;
-				using const_iterator_type = typename _const_iterator<T,Allocator>::value_type;
 			public:
-				virtual iterator begin() noexcept{
-					return iterator(_ptr,0);
-				}
-				virtual const_iterator begin() const noexcept{
-					return const_iterator(_ptr,0);
-				}
-				virtual const_iterator cbegin() const noexcept{
-					return const_iterator(_ptr,0);
-				}
-				virtual iterator end() noexcept{
-					return iterator(_ptr,_len);
-				}
-				virtual const_iterator end() const noexcept{
-					return const_iterator(_ptr,_len);
-				}
-				virtual const_iterator cend() const noexcept{
-					return const_iterator(_ptr,_len);
-				}
+				virtual iterator begin() noexcept = 0;
+				virtual const_iterator begin() const noexcept = 0;
+				virtual const_iterator cbegin() const noexcept = 0;
+				virtual iterator end() noexcept = 0;
+				virtual const_iterator end() const noexcept = 0;
+				virtual const_iterator cend() const noexcept = 0;
 		}; // class _tensor_iter
 	} // namespace _ten
 } // namespace _md

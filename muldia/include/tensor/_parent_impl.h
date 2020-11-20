@@ -22,13 +22,16 @@ namespace _md{
 
 		template<typename T,typename Allocator>
 		_parent_tensor<T,Allocator>::_parent_tensor(std::vector<T> t_) :
-			_tensor<T,Allocator>{t_}{
-		}
+			_tensor<T,Allocator>{t_}{}
 		
 		template<typename T,typename Allocator>
 		_parent_tensor<T,Allocator>::_parent_tensor(const _child_tensor<T,Allocator> c_)
 				: _tensor<T,Allocator>{c_}
-		{
+		{}
+
+		template<typename T,typename Allocator>
+		_child_tensor<T,Allocator> _parent_tensor<T,Allocator>::operator[](subsc_t sb_){
+			return _child_tensor<T,Allocator>{*this,sb_};
 		}
 	} // namespace _ten
 } // namespace _md

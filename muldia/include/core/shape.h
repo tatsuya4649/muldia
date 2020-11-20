@@ -114,8 +114,6 @@ namespace _md{
 			 */
 			void reshape(shape_t t_,shape_t ele_){
 				_shp[t_] = ele_;
-				std::cout << ele_ << std::endl;
-				std::cout << t_ << std::endl;
 			}
 
 		private:

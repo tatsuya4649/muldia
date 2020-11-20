@@ -7,7 +7,7 @@
 
 #include <name.h>
 #include <tensor/name.h>
-#include <tensor/_tensor.h>
+#include <tensor/tensor.h>
 #include <type_traits>
 #include <tensor/_child_impl.h>
 
@@ -16,6 +16,7 @@ namespace _md{
 		template<typename T,typename Allocator=std::allocator<T>>
 		class _parent_tensor : public _tensor<T,Allocator>{
 			friend class _child_tensor<T,Allocator>;
+			using child_tensor = _child_tensor<T,Allocator>;
 			public:
 			_parent_tensor();
 			template<typename U>
@@ -26,6 +27,7 @@ namespace _md{
 			_parent_tensor(std::vector<T>);
 			_parent_tensor(const _child_tensor<T,Allocator>);
 			~_parent_tensor() = default;
+			_child_tensor<T,Allocator> operator[](subsc_t);
 		}; // class _parent_tensor : _tensor<T,Allocator>
 	} // namespace _ten
 } // namespace _md

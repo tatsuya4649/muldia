@@ -16,39 +16,39 @@ namespace _md{
 	namespace _ten{
 		template<typename T,typename Allocator = std::allocator<T>>
 		class _tensor_child{
-			protected:
-				using traits = std::allocator_traits<Allocator>;
-				using pointer = typename traits::pointer;
-				using size_type = typename Allocator::difference_type;
-				// in the tensor class , you must implemnet a override function
-				// (pure virtual function)
-				// ======================================
-				// have_c_tensor() to get whether tensor class has child tensor
-				virtual bool have_c_tensor() const noexcept{
-					return _c_start_ptr != nullptr;	
-				};
-				virtual void child_error(){
-					if (have_c_tensor()){
-						throw err::child_have_error{"don't have child"};
-					}
-				}
-				shape_size_t _c_shp_size() { return _c_shp.size(); }
-				// member
-				mutable pointer _c_start_ptr = nullptr;
-				mutable size_type _c_len = 0;
-				mutable _shape _c_shp;
-			public:
-				// if child tensor, delete
-				virtual void child_delete() const{
-					if (have_c_tensor()){
-						_c_start_ptr = nullptr;
-						_c_len = 0;
-						_c_shp = {};
-					}
-				}
-				pointer c_start_ptr() const noexcept { return _c_start_ptr; }
-				_shape c_shp() const noexcept { return _c_shp; }
-				size_type c_len() const noexcept { return _c_len; }
+//			protected:
+//				using traits = std::allocator_traits<Allocator>;
+//				using pointer = typename traits::pointer;
+//				using size_type = typename Allocator::difference_type;
+//				// in the tensor class , you must implemnet a override function
+//				// (pure virtual function)
+//				// ======================================
+//				// have_c_tensor() to get whether tensor class has child tensor
+//				virtual bool have_c_tensor() const noexcept{
+//					return _c_start_ptr != nullptr;	
+//				};
+//				virtual void child_error(){
+//					if (have_c_tensor()){
+//						throw err::child_have_error{"don't have child"};
+//					}
+//				}
+//				shape_size_t _c_shp_size() { return _c_shp.size(); }
+//				// member
+//				mutable pointer _c_start_ptr = nullptr;
+//				mutable size_type _c_len = 0;
+//				mutable _shape _c_shp;
+//			public:
+//				// if child tensor, delete
+//				virtual void child_delete() const{
+//					if (have_c_tensor()){
+//						_c_start_ptr = nullptr;
+//						_c_len = 0;
+//						_c_shp = {};
+//					}
+//				}
+//				pointer c_start_ptr() const noexcept { return _c_start_ptr; }
+//				_shape c_shp() const noexcept { return _c_shp; }
+//				size_type c_len() const noexcept { return _c_len; }
 		}; // class _tensor_child
 	} // namespace _ten
 } // namespace _md

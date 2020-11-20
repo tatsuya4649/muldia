@@ -84,38 +84,10 @@ namespace _md{
 				}
 				/* check if autocast is required for each tensor  */
 				static bool need_cast_tensor(const T& t1_,const T& t2_){
-					if (t1_.have_c_tensor()){
-						if (t2_.have_c_tensor()){
-							if (_autocast<T>::need_cast(t1_.c_shp(),
-										t2_.c_shp())){
-								return NEED_CAST;
-							}else{
-								return NOT_NEED_CAST;
-							}
-						}else{
-							if (_autocast<T>::need_cast(t1_.c_shp(),
-										t2_.shp())){
-								return NEED_CAST;
-							}else{
-								return NOT_NEED_CAST;
-							}
-						}
+					if (_autocast<T>::need_cast(t1_.shp(),t2_.shp())){
+						return NEED_CAST;
 					}else{
-						if (t2_.have_c_tensor()){
-							if (_autocast<T>::need_cast(t1_.shp(),
-										t2_.c_shp())){
-								return NEED_CAST;
-							}else{
-								return NOT_NEED_CAST;
-							}
-						}else{
-							if (_autocast<T>::need_cast(t1_.shp(),
-										t2_.shp())){
-								return NEED_CAST;
-							}else{
-								return NOT_NEED_CAST;
-							}
-						}
+						return NOT_NEED_CAST;
 					}
 				}
 				/* if autocast is needed, do the actual conversion */
@@ -124,7 +96,6 @@ namespace _md{
 					_shape big_shp;
 					T tensor;
 					T tensor_big;
-					std::cout << t1_.shp().ndim() << std::endl;
 					if (t1_.shp().ndim() == t2_.shp().ndim()){
 						t1_.shp().size() < t2_.shp().size() ? 
 							(small_shp=t1_.shp(),big_shp=t2_.shp(),
@@ -138,18 +109,15 @@ namespace _md{
 							(big_shp=t1_.shp(),small_shp=t2_.shp(),
 							 tensor = t2_,tensor_big = t1_);
 					}
-					
 					/*		step1		*/
 					while(small_shp.ndim() != big_shp.ndim()){
 						small_shp.push_first(ADD_DIM);
 						tensor.reshp().push_first(ADD_DIM);
 					}
-					tensor.chl2par();
-					std::cout << small_shp << std::endl;
-					std::cout << tensor.shp() << std::endl;
 					/*		step2		*/
 					shape_size_t n = small_shp.ndim();
 					for (auto i=0;i<n;++i){
+						/* from a small number of dimensions */
 						shape_size_t now = (n-1) - i;
 						if (small_shp()[now] != big_shp()[now]){
 							if (small_shp()[now] != ADD_DIM)
@@ -161,30 +129,17 @@ namespace _md{
 							 * the same of different,small has 1.
 							 */
 							
-							/*  
-							 *  TODO: 
-							 *  	create a new tensor by indentifying
-							 *  	the repeating part of the small
-							 *  	tensor from the specified pointer
-							 *  	and shape.
-							 */
-
 							// repeat for the number of elements
 							// in the large tensor
 							_autocast<T>::expand_small(tensor,now,big_shp()[now]);
-							//for(unsigned int i=0;i<big_shp()[now];++i){
-								// start index from _ptr
-								//unsigned int index = i*number_ele_now;
-								// TODO:
-								// copy number_ele_now from index
-								// (copy source is 0 to number_ele_now)
-							//}
 						}
 					}
-					//return tensor;
 					return std::pair<T,T>{tensor,tensor_big};
 				}
-				/* expand by the required number of iterations of small tensor */
+				/* 
+				 * expand by the required number of
+				 * iterations of small tensor
+				 */
 				static void expand_small(T& ten_,unsigned int index_,unsigned int count_){
 					/*  
 					 *  ten_   => small tensor
@@ -193,41 +148,34 @@ namespace _md{
 					 */
 					// get small tensor's shape number of
 					// elements below different dimensions.
-					unsigned int number_ele_now = _autoshape::s2b(index_,
-							(ten_.have_c_tensor()?ten_.c_shp():ten_.shp()));
-					unsigned int pre_size = _autoshape::pre_size(index_,
-							(ten_.have_c_tensor()?ten_.c_shp():ten_.shp()));
-					std::cout << number_ele_now << std::endl;
-					std::cout << pre_size << std::endl;
+					unsigned int number_ele_now = 
+						_autoshape::s2b(index_,ten_.shp());
+					unsigned int pre_size = 
+						_autoshape::pre_size(index_,ten_.shp());
 					/*
 					 *  this loop iterates over the number of elements in
 					 *  a dimension higher than the current number of dimensions
 					 */
-					for (unsigned int k=0;k<=pre_size;k++){
+					for (unsigned int k=0;k<pre_size;k++){
 						unsigned int start_pre_index = 
-							k*count_*number_ele_now;
+							k*(count_)*number_ele_now;
 						/*
 						 * this loop repeats the count required for
 						 * autocast(the number of elements in big tensor)
-						 * and calls it to allocate memory and copy elements
+						 * and calls it to allocate memory and copy elements.
+						 * the actual number of repetitions
+						 * is count_-1 times
 						 */
-						for (unsigned int i=0;i<count_;i++){
+						for (unsigned int i=0;i<(count_-1);i++){
 							// separate processing depending on whether or
 							// not ten_ has a child tensor.
-							if(ten_.have_c_tensor()){
-								throw _err::_tensor_autocast_error{"when tensor is autocasted, tensor have to not have child tensor."};
-							}
 							unsigned int start_index =
-							start_pre_index+(i*number_ele_now);
+							start_pre_index+((i+1)*number_ele_now);
 							ten_.insert(start_index,start_pre_index
 									,number_ele_now);
 						}
 					}
-					if (ten_.have_c_tensor()){
-						ten_.c_shp().reshape(index_,count_);
-					}else{
-						ten_.reshp().reshape(index_,count_);
-					}
+					ten_.reshp().reshape(index_,count_);
 				}
 			}; // class _autocast
 		} // namespace _hel

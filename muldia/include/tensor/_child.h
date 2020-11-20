@@ -40,7 +40,14 @@ namespace _md{
 			template<typename U>
 			_child_tensor(const U& par_,subsc_t);
 			~_child_tensor()override;
+			/* operator[] used when making smaller tensors.
+			 */
+			_child_tensor operator[](subsc_t);
 			private:
+			/* constructor used to create a child tensor from the subscripts of the child tensor.
+			 * private so that it cannot be used from the outside.
+			 */
+			_child_tensor(const _child_tensor&,subsc_t);
 			/*  
 			 *  since the child refers to the pointer of the parent,
 			 *  the pointer of the reference destination is deleted (nullptr)

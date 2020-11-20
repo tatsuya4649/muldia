@@ -29,7 +29,6 @@ namespace _md{
 				 */
 			public:
 				static unsigned int s2b(shape_size_t now_,_shape small_shp_){
-					std::cout << "s2b()" << std::endl;
 					unsigned int res = 1;
 					for(auto i=now_;i<small_shp_.ndim();++i){
 						res *= small_shp_()[i];
@@ -37,11 +36,9 @@ namespace _md{
 					return res;
 				}
 				static unsigned int pre_size(shape_size_t idx_,_shape shp_){
-					std::cout << idx_ << std::endl;
-					std::cout << "pre_size" << std::endl;
 					if (idx_ == 0) return 0;
 					unsigned int res = 1;
-					for(auto i=0;i<idx_-1;++i){
+					for(auto i=0;i<idx_;++i){
 						res *= shp_()[i];
 					}
 					return res;

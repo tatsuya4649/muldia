@@ -20,7 +20,7 @@ namespace _md{
 		template<typename T,typename Allocator>
 		template<typename U>
 		_child_tensor<T,Allocator>::_child_tensor(const U& par_,subsc_t sub_){
-			pointer subsc_ptr = nest_scratch<T,Allocator>(sub_,par_.shp()(),this->_ptr);
+			pointer subsc_ptr = nest_scratch<T,Allocator>(sub_,par_.shp()(),par_._ptr);
 			_shape subsc_shp = this->shp_subsc(par_._shp,sub_);
 			this->_ptr = subsc_ptr;
 			this->_shp = subsc_shp;
@@ -38,6 +38,21 @@ namespace _md{
 			this->_ptr = nullptr;
 			this->_len = 0;
 			this->_shp = {};
+		}
+
+		template<typename T,typename Allocator>
+		_child_tensor<T,Allocator>::_child_tensor(const _child_tensor<T,Allocator>& c_,subsc_t sub_){
+			pointer subsc_ptr = nest_scratch<T,Allocator>(sub_,c_.shp()(),c_._ptr);
+			_shape subsc_shp = this->shp_subsc(c_._shp,sub_);
+			this->_ptr = subsc_ptr;
+			this->_shp = subsc_shp;
+			this->_len = this->_shp.size();
+			this->_cap = this->_len;
+		}
+
+		template<typename T,typename Allocator>
+		_child_tensor<T,Allocator> _child_tensor<T,Allocator>::operator[](subsc_t sub_){
+			return _child_tensor(*this,sub_);
 		}
 
 

@@ -28,7 +28,6 @@ namespace _md{
 					if (s_ >= _shp[0])
 						throw _md::err::shape_subscript_error{"subsc_t(subscription) must be less than the number of leading elements in the shape"};
 					_shape new_shp = _shp;
-					//_shp_subsc(s_,new_shp);
 					new_shp.pop_first();
 					return new_shp;
 				}

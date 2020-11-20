@@ -4,10 +4,9 @@
 #ifndef TENSOR_H
 #define TENSOR_H
 
-#include <tensor/_tensor.h>
-#include <memory>
+#include <tensor/_parent_impl.h>
 
 template <typename T = int,typename Allocator = std::allocator<T>>
-using tensor = _md::_ten::_tensor<T,Allocator>;
+using tensor = _md::_ten::_parent_tensor<T,Allocator>;
 
 #endif // TENSOR_H

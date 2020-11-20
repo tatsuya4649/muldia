@@ -29,10 +29,6 @@ namespace _md{
 			 */
 			template<typename T>
 			void ope_concept(const T& ten1_,const T& ten2_){
-				if (ten1_.have_c_tensor())
-					throw _err::_tensor_operation_error{"the operation between tensors must not have child tensor."};
-				if (ten2_.have_c_tensor())
-					throw _err::_tensor_operation_error{"the operation between tensors must not have child tensor."};
 				if (ten1_.size()!=ten2_.size())
 					throw _err::_tensor_operation_error{"the operation between tensors must have the same number of elements"};
 				if (ten1_.ndim()!=ten2_.ndim())
@@ -46,10 +42,6 @@ namespace _md{
 			 */
 			template<typename T>
 			std::pair<T,T> autocast(T ten1_,T ten2_){
-				if (ten1_.have_c_tensor())
-					ten1_.chl2par();
-				if (ten2_.have_c_tensor())
-					ten2_.chl2par();
 				if (_autocast<T>::need_cast_tensor(ten1_,ten2_)){
 					return _autocast<T>::autocast(ten1_,ten2_);
 				}else{
